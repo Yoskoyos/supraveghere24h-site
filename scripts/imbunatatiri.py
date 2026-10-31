@@ -13,7 +13,7 @@ BUSINESS = {
   "telephone": "+40763354355", "email": "contact@supraveghere24h.ro",
   "address": {"@type": "PostalAddress", "streetAddress": "Str. Aviator Mircea Petre nr. 10", "addressLocality": "București",
               "addressRegion": "Sector 1", "addressCountry": "RO"},
-  "areaServed": {"@type": "City", "name": "București"},
+  "areaServed": [{"@type": "City", "name": "București"}, {"@type": "AdministrativeArea", "name": "Județul Ilfov"}],
   "openingHoursSpecification": [{"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], "opens": "09:00", "closes": "18:00"}],
   "priceRange": "de la 189 lei / lună",
   "description": "Sisteme de supraveghere video pentru blocuri și asociații de proprietari, cu abonament lunar fix și instalare gratuită."
@@ -26,6 +26,7 @@ FLOAT = '''
 .s24f-wa{position:fixed;right:18px;bottom:18px;z-index:900;width:58px;height:58px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 24px -6px rgba(0,0,0,.35);transition:transform .2s}
 .s24f-wa:hover{transform:scale(1.07)}.s24f-wa svg{width:32px;height:32px;fill:#fff}
 .s24f-bar{display:none}
+.s24-up{bottom:92px!important;right:20px!important;width:46px!important;height:46px!important}
 @media(max-width:767px){
   .s24f-wa{bottom:calc(78px + env(safe-area-inset-bottom,0px));right:14px;width:54px;height:54px}
   .s24f-bar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:899;gap:8px;padding:10px 12px calc(10px + env(safe-area-inset-bottom,0px));background:#0D1F33;box-shadow:0 -8px 24px rgba(13,31,51,.25)}
@@ -34,6 +35,7 @@ FLOAT = '''
   .s24f-bar svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
   body{padding-bottom:calc(70px + env(safe-area-inset-bottom,0px))}
   .s24-ck{bottom:calc(80px + env(safe-area-inset-bottom,0px))!important}
+  .s24-up{display:none!important}
 }
 </style>
 <a class="s24f-wa" href="''' + WA + '''" target="_blank" rel="noopener" aria-label="Scrie-ne pe WhatsApp"><svg viewBox="0 0 32 32"><path d="M16 3C8.8 3 3 8.7 3 15.8c0 2.3.6 4.5 1.8 6.5L3 29l6.9-1.8c1.9 1 4 1.6 6.1 1.6 7.2 0 13-5.7 13-12.8S23.2 3 16 3zm0 23.4c-1.9 0-3.8-.5-5.4-1.5l-.4-.2-4.1 1.1 1.1-4-.3-.4c-1.1-1.7-1.6-3.6-1.6-5.6 0-5.9 4.8-10.6 10.8-10.6 5.9 0 10.8 4.8 10.8 10.6S21.9 26.4 16 26.4zm5.9-7.9c-.3-.2-1.9-.9-2.2-1s-.5-.2-.7.2-.8 1-1 1.2-.4.2-.7.1c-.3-.2-1.4-.5-2.6-1.6-1-.9-1.6-1.9-1.8-2.2-.2-.3 0-.5.1-.7l.5-.6c.2-.2.2-.3.3-.5.1-.2 0-.4 0-.6l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.1-1.2 2.7s1.2 3.1 1.4 3.4c.2.2 2.4 3.6 5.7 5 .8.3 1.4.5 1.9.7.8.3 1.5.2 2.1.1.6-.1 1.9-.8 2.2-1.5.3-.7.3-1.4.2-1.5-.1-.2-.3-.3-.7-.4z"/></svg></a>
@@ -116,7 +118,7 @@ def sector_page(n):
       <h2 class="s24-h2">Montăm sisteme de supraveghere în tot Sectorul {n}</h2>
       <p class="s24-sub">Lucrăm cu asociații de proprietari din toate cartierele sectorului, inclusiv:</p>
       <div style="margin-top:22px">{chips}</div>
-      <p class="s24-sub" style="margin-top:18px">Venim la bloc pentru evaluare, propunem amplasarea camerelor și vă trimitem oferta. Lucrăm și în {others}.</p>
+      <p class="s24-sub" style="margin-top:18px">Venim la bloc pentru evaluare, propunem amplasarea camerelor și vă trimitem oferta. Lucrăm și în {others}, precum și în <a href="supraveghere-video-bloc-ilfov.html" style="color:#0D1F33;font-weight:700">județul Ilfov</a>.</p>
     </div>
   </section>
 '''
@@ -151,7 +153,7 @@ for n in range(1, 7):
 
 # ---------- 4. SEO + butoane pe toate paginile ----------
 pages = sorted(f for f in os.listdir(PRE) if f.endswith('.html'))
-LD_PAGES = {'index.html', 'contact.html'} | {f'supraveghere-video-bloc-sector-{n}.html' for n in range(1, 7)}
+LD_PAGES = {'index.html', 'contact.html'} | {f for f in os.listdir(PRE) if f.startswith('supraveghere-video-bloc-')}
 for f in pages:
     p = os.path.join(PRE, f); s = strip_old(open(p).read())
     title, desc = get_title_desc(s)
@@ -171,7 +173,7 @@ for f in ['index.html']:
 
 # ---------- 5. sitemap + robots (pentru lansare: se mută în rădăcină) ----------
 urls = [SITE + '/' + ('' if f == 'index.html' else f[:-5]) for f in pages]
-prio = lambda u: '1.0' if u.endswith('/') else '0.9' if ('calculator' in u or 'oferta' in u or 'contact' in u) else '0.7' if 'sector' in u else '0.5'
+prio = lambda u: '1.0' if u.endswith('/') else '0.9' if ('calculator' in u or 'oferta' in u or 'contact' in u) else '0.7' if 'supraveghere-video-bloc' in u else '0.5'
 sm = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + ''.join(
     f'  <url><loc>{u}</loc><lastmod>2026-10-31</lastmod><priority>{prio(u)}</priority></url>\n' for u in urls) + '</urlset>\n'
 open(os.path.join(PRE, 'sitemap.xml'), 'w').write(sm)
