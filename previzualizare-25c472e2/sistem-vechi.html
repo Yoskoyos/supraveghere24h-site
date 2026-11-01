@@ -233,5 +233,150 @@
 <a class="s24f-wa" href="https://wa.me/40763354355?text=Bun%C4%83%20ziua!%20A%C8%99%20dori%20o%20ofert%C4%83%20pentru%20supraveghere%20video%20la%20bloc." target="_blank" rel="noopener" aria-label="Scrie-ne pe WhatsApp"><svg viewBox="0 0 32 32"><path d="M16 3C8.8 3 3 8.7 3 15.8c0 2.3.6 4.5 1.8 6.5L3 29l6.9-1.8c1.9 1 4 1.6 6.1 1.6 7.2 0 13-5.7 13-12.8S23.2 3 16 3zm0 23.4c-1.9 0-3.8-.5-5.4-1.5l-.4-.2-4.1 1.1 1.1-4-.3-.4c-1.1-1.7-1.6-3.6-1.6-5.6 0-5.9 4.8-10.6 10.8-10.6 5.9 0 10.8 4.8 10.8 10.6S21.9 26.4 16 26.4zm5.9-7.9c-.3-.2-1.9-.9-2.2-1s-.5-.2-.7.2-.8 1-1 1.2-.4.2-.7.1c-.3-.2-1.4-.5-2.6-1.6-1-.9-1.6-1.9-1.8-2.2-.2-.3 0-.5.1-.7l.5-.6c.2-.2.2-.3.3-.5.1-.2 0-.4 0-.6l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.1-1.2 2.7s1.2 3.1 1.4 3.4c.2.2 2.4 3.6 5.7 5 .8.3 1.4.5 1.9.7.8.3 1.5.2 2.1.1.6-.1 1.9-.8 2.2-1.5.3-.7.3-1.4.2-1.5-.1-.2-.3-.3-.7-.4z"/></svg></a>
 <div class="s24f-bar"><a class="c" href="tel:+40763354355"><svg viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>Sună acum</a><a class="k" href="calculator-pret.html"><svg viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8M8 11h2M14 11h2M8 15h2M14 15h2M8 19h8"/></svg>Calculează prețul</a></div>
 <!-- /s24-float -->
+<!-- s24-anim --><style>
+/* ── 5. efecte la atingere ── */
+@media (hover:hover){
+  .s24-card,.s24-ic-card,.s24-pasi-card,.s24-sg>div,.s24-zone a,.s24c-in,.s24c-out{transition:transform .25s ease,box-shadow .25s ease}
+  .s24-card:hover,.s24-ic-card:hover,.s24-pasi-card:hover,.s24-zone a:hover{transform:translateY(-4px);box-shadow:0 16px 34px -18px rgba(13,31,51,.45)}
+  .s24-btn{transition:transform .2s ease,box-shadow .2s ease,filter .2s ease}
+  .s24-btn:hover{transform:translateY(-2px);box-shadow:0 12px 24px -12px rgba(13,31,51,.55)}
+}
+/* ── 3. pașii ── */
+.s24a-step{position:relative}
+.s24a-step::before{content:"";position:absolute;left:0;top:0;height:4px;width:0;background:#F5A100;border-radius:4px;transition:width .6s ease var(--d,0s)}
+.s24a-go .s24a-step::before{width:100%}
+.s24a-step .s24-dot,.s24a-step .s24-pasi-num{transition:transform .45s cubic-bezier(.34,1.56,.64,1) var(--d,0s),background .3s ease var(--d,0s),color .3s ease var(--d,0s)}
+.s24a-go .s24a-step .s24-dot{transform:scale(1.12)}
+.s24a-go .s24a-step .s24-pasi-num{transform:translateY(-2px)}
+.s24a-tick{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:#22c55e;color:#fff;font-size:13px;font-weight:800;margin-left:8px;vertical-align:middle;transform:scale(0);transition:transform .4s cubic-bezier(.34,1.56,.64,1) calc(var(--d,0s) + .45s)}
+.s24a-go .s24a-tick{transform:scale(1)}
+/* ── 4. întrebări frecvente ── */
+.s24a-faq .s24-q-h{cursor:pointer;position:relative;padding-right:40px;user-select:none}
+.s24a-faq .s24-q-h::after{content:"";position:absolute;right:6px;top:50%;width:10px;height:10px;margin-top:-8px;border-right:2.5px solid #0D1F33;border-bottom:2.5px solid #0D1F33;transform:rotate(45deg);transition:transform .25s ease,margin .25s ease}
+.s24a-faq .s24-q.s24a-open .s24-q-h::after{transform:rotate(-135deg);margin-top:-3px}
+.s24a-faq .s24-q-p{overflow:hidden;max-height:0;opacity:0;margin-top:0!important;transition:max-height .35s ease,opacity .3s ease,margin .3s ease}
+.s24a-faq .s24-q.s24a-open .s24-q-p{opacity:1;margin-top:10px!important}
+.s24a-faq .s24-q-h:focus-visible{outline:3px solid #F5A100;outline-offset:4px;border-radius:4px}
+/* ── 1. monitor live ── */
+.s24m{background:#07121F;border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:10px;margin-bottom:18px;box-shadow:0 24px 50px -24px rgba(0,0,0,.7)}
+.s24m-top{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:2px 4px 10px;font:600 12px/1.2 Montserrat,'Segoe UI',Arial,sans-serif;color:#9FB3C8}
+.s24m-live{display:inline-flex;align-items:center;gap:7px;color:#fff;font-weight:800;letter-spacing:.08em}
+.s24m-live i{width:9px;height:9px;border-radius:50%;background:#ef4444;box-shadow:0 0 0 0 rgba(239,68,68,.6);animation:s24m-rec 1.6s infinite}
+@keyframes s24m-rec{0%{box-shadow:0 0 0 0 rgba(239,68,68,.6)}70%{box-shadow:0 0 0 8px rgba(239,68,68,0)}100%{box-shadow:0 0 0 0 rgba(239,68,68,0)}}
+.s24m-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.s24m-t{position:relative;aspect-ratio:16/10;border-radius:8px;overflow:hidden;background:#0F2236}
+.s24m-t svg{position:absolute;inset:0;width:100%;height:100%;display:block}
+.s24m-t::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(255,255,255,.035) 0 1px,transparent 1px 3px);pointer-events:none}
+.s24m-scan{position:absolute;left:0;right:0;height:22%;top:-22%;background:linear-gradient(180deg,transparent,rgba(120,190,255,.10),transparent);animation:s24m-scan 4.5s linear infinite;pointer-events:none}
+.s24m-t:nth-child(2) .s24m-scan{animation-delay:-1.2s}.s24m-t:nth-child(3) .s24m-scan{animation-delay:-2.4s}.s24m-t:nth-child(4) .s24m-scan{animation-delay:-3.4s}
+@keyframes s24m-scan{to{top:100%}}
+.s24m-l{position:absolute;left:6px;top:5px;font:700 9px/1 Montserrat,'Segoe UI',Arial,sans-serif;color:#E6EDF4;letter-spacing:.04em;text-shadow:0 1px 2px #000}
+.s24m-r{position:absolute;right:6px;top:5px;display:flex;align-items:center;gap:4px;font:800 8.5px/1 Montserrat,'Segoe UI',Arial,sans-serif;color:#fff;text-shadow:0 1px 2px #000}
+.s24m-r i{width:6px;height:6px;border-radius:50%;background:#ef4444;animation:s24m-blink 1.2s steps(2,start) infinite}
+@keyframes s24m-blink{to{visibility:hidden}}
+.s24m-ts{position:absolute;left:6px;bottom:5px;font:600 8.5px/1 'SFMono-Regular',Consolas,monospace;color:#cfe3f7;text-shadow:0 1px 2px #000}
+.s24m-bot{display:flex;justify-content:space-between;gap:10px;padding:10px 4px 2px;font:600 11.5px/1.3 Montserrat,'Segoe UI',Arial,sans-serif;color:#9FB3C8}
+.s24m-bot b{color:#22c55e}
+.s24m-walk{animation:s24m-walk 9s linear infinite}
+@keyframes s24m-walk{0%{transform:translateX(-40px)}100%{transform:translateX(190px)}}
+.s24m-car{animation:s24m-car 12s ease-in-out infinite}
+@keyframes s24m-car{0%,15%{transform:translateX(-90px)}45%,70%{transform:translateX(0)}100%{transform:translateX(200px)}}
+.s24m-floor{animation:s24m-floor 8s steps(1) infinite}
+.s24m-door{animation:s24m-door 8s ease-in-out infinite}
+@keyframes s24m-door{0%,30%,70%,100%{transform:scaleX(1)}40%,60%{transform:scaleX(.15)}}
+/* ── 2. calculator: blocul cu camere ── */
+.s24b{margin-top:18px;border:1px solid #E1E6EC;border-radius:14px;background:linear-gradient(180deg,#F5F8FC,#fff);padding:12px 12px 8px}
+.s24b svg{display:block;width:100%;height:auto}
+.s24b-cap{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;font:700 12.5px/1.3 Montserrat,'Segoe UI',Arial,sans-serif;color:#14202E;padding-top:6px}
+.s24b-cap span{display:inline-flex;align-items:center;gap:6px}.s24b-cap i{width:10px;height:10px;border-radius:50%}
+.s24b-cam{opacity:.18;transition:opacity .35s ease}
+.s24b-cam.on{opacity:1}
+.s24b-cam .ping{transform-box:fill-box;transform-origin:center;opacity:0}
+.s24b-cam.new .ping{animation:s24b-ping .9s ease-out}
+@keyframes s24b-ping{0%{opacity:.9;transform:scale(.6)}100%{opacity:0;transform:scale(2.6)}}
+.s24c-total.s24a-roll{transition:transform .25s ease}
+@media (prefers-reduced-motion: reduce){
+  .s24m *,.s24m-live i,.s24b *{animation:none!important}
+  .s24a-step::before,.s24a-step .s24-dot,.s24a-tick,.s24a-faq .s24-q-p{transition:none!important}
+  .s24-card,.s24-btn,.s24-ic-card,.s24-pasi-card{transition:none!important;transform:none!important}
+}
+</style><script>
+(function(){
+  var RM = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function ready(f){ if(document.readyState!=='loading') f(); else document.addEventListener('DOMContentLoaded', f); }
+  ready(function(){
+    /* 3. pașii */
+    var secs = document.querySelectorAll('.s24-pasi-row, .s24-sg');
+    secs.forEach(function(row){
+      var items = row.classList.contains('s24-pasi-row') ? row.querySelectorAll('.s24-pasi-card') : row.children;
+      [].forEach.call(items, function(it, i){
+        it.classList.add('s24a-step'); it.style.setProperty('--d', (i * 0.35) + 's');
+        var t = it.querySelector('.s24-pasi-t, .s24-pasi-t-last, .s24-step-h');
+        if (t && !t.querySelector('.s24a-tick')) { var k = document.createElement('span'); k.className = 's24a-tick'; k.textContent = '✓'; k.setAttribute('aria-hidden','true'); t.appendChild(k); }
+      });
+      if (RM || !('IntersectionObserver' in window)) { row.classList.add('s24a-go'); return; }
+      var io = new IntersectionObserver(function(es){ es.forEach(function(e){ if (e.isIntersecting) { row.classList.add('s24a-go'); io.disconnect(); } }); }, { threshold: .35 });
+      io.observe(row);
+    });
+    /* 4. întrebări frecvente */
+    document.querySelectorAll('.s24-faq').forEach(function(f){
+      if (f.classList.contains('s24a-faq') || !f.querySelector('.s24-q')) return;
+      f.classList.add('s24a-faq');
+      f.querySelectorAll('.s24-q').forEach(function(q, i){
+        var h = q.querySelector('.s24-q-h'), p = q.querySelector('.s24-q-p'); if (!h || !p) return;
+        h.setAttribute('role','button'); h.setAttribute('tabindex','0'); h.setAttribute('aria-expanded','false');
+        function toggle(){ var o = !q.classList.contains('s24a-open'); q.classList.toggle('s24a-open', o); h.setAttribute('aria-expanded', o ? 'true' : 'false'); p.style.maxHeight = o ? (p.scrollHeight + 20) + 'px' : '0px'; }
+        h.addEventListener('click', toggle);
+        h.addEventListener('keydown', function(e){ if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); } });
+      });
+    });
+    /* 1. monitor live: ceasul de pe fiecare cameră */
+    var ts = document.querySelectorAll('.s24m-ts, .s24m-clock');
+    if (ts.length) {
+      var fmt = function(){ var d = new Date(); try { return d.toLocaleString('ro-RO', { timeZone:'Europe/Bucharest', day:'2-digit', month:'2-digit', year:'numeric', hour:'2-digit', minute:'2-digit', second:'2-digit' }).replace(',', ''); } catch(e){ return d.toLocaleString(); } };
+      var tick = function(){ var t = fmt(); ts.forEach(function(el){ el.textContent = el.classList.contains('s24m-clock') ? t.slice(-8) : t; }); };
+      tick(); setInterval(tick, 1000);
+      var fl = document.querySelector('.s24m-floor'), n = 0;
+      if (fl && !RM) setInterval(function(){ n = (n + 1) % 9; fl.textContent = n === 0 ? 'P' : n; }, 1800);
+    }
+    /* 2. calculator: preț care rulează + blocul cu camere */
+    var tot = document.getElementById('s24c-total');
+    if (tot) {
+      var num = function(t){ return parseInt(String(t || '').replace(/\D/g, ''), 10) || 0; };
+      var last = num(tot.textContent), mine = null, raf = 0;
+      new MutationObserver(function(){
+        var txt = tot.textContent;
+        if (txt === mine) return;                       // schimbarea făcută de animația noastră
+        var target = num(txt);
+        if (RM || target === last) { last = target; return; }
+        var from = last, t0 = performance.now(), dur = 550; last = target;
+        cancelAnimationFrame(raf);
+        var step = function(now){ var k = Math.min(1, (now - t0) / dur), e = 1 - Math.pow(1 - k, 3);
+          mine = Math.round(from + (target - from) * e).toLocaleString('ro-RO') + ' lei / lună'; tot.textContent = mine;
+          if (k < 1) raf = requestAnimationFrame(step); };
+        raf = requestAnimationFrame(step);
+      }).observe(tot, { childList: true, characterData: true, subtree: true });
+    }
+    var bld = document.querySelector('.s24b');
+    if (bld) {
+      var v = function(id){ var el = document.getElementById(id); return el ? Math.max(0, parseInt(el.value, 10) || 0) : 0; };
+      var prev = {};
+      var render = function(){
+        var want = { i: v('s24c-int'), e: v('s24c-ext'), l: v('s24c-lift') };
+        ['i','e','l'].forEach(function(k){
+          var cams = bld.querySelectorAll('.s24b-cam[data-k="' + k + '"]');
+          cams.forEach(function(c, idx){ var on = idx < want[k]; if (on && !c.classList.contains('on') && !RM) { c.classList.add('new'); setTimeout(function(){ c.classList.remove('new'); }, 950); } c.classList.toggle('on', on); });
+        });
+        var cap = bld.querySelector('.s24b-cap');
+        if (cap) cap.innerHTML = '<span><i style="background:#F5A100"></i>' + want.i + ' interior</span><span><i style="background:#0B5FB0"></i>' + want.e + ' exterior</span><span><i style="background:#22c55e"></i>' + want.l + ' lift</span>';
+        prev = want;
+      };
+      var sec = document.querySelector('.s24c-sec') || document;
+      ['click','input','change','keyup'].forEach(function(ev){ sec.addEventListener(ev, function(){ requestAnimationFrame(render); }); });
+      render();
+    }
+  });
+})();
+</script><!-- /s24-anim -->
 </body>
 </html>
