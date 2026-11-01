@@ -3,6 +3,7 @@
 import os
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PRE = os.path.join(ROOT, 'previzualizare-25c472e2')
+if not os.path.isdir(PRE): PRE = ROOT   # după lansare, paginile sunt în rădăcină
 URL = 'https://g.page/r/CQV6InDh9bMwEBM/review'
 
 FLINK = f'<a href="{URL}" target="_blank" rel="noopener" class="s24-flink">★ Lasă o recenzie pe Google</a><span class="s24-fsep">·</span>'

@@ -2,6 +2,7 @@
 import os, re
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PRE = os.path.join(ROOT, 'previzualizare-25c472e2')
+if not os.path.isdir(PRE): PRE = ROOT   # după lansare, paginile sunt în rădăcină
 
 tpl = open(os.path.join(PRE, 'oferta-asociatii.html')).read()
 tpl = re.sub(r'  <!-- s24-seo -->.*?<!-- /s24-seo -->\n', '', tpl, flags=re.S)

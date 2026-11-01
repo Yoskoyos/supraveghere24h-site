@@ -5,6 +5,7 @@
 import os, re
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PRE = os.path.join(ROOT, 'previzualizare-25c472e2')
+if not os.path.isdir(PRE): PRE = ROOT   # după lansare, paginile sunt în rădăcină
 
 CSS = r'''
 /* ── 5. efecte la atingere ── */

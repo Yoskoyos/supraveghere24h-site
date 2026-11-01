@@ -4,6 +4,7 @@ import os, re, html as H
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PRE = os.path.join(ROOT, 'previzualizare-25c472e2')
+if not os.path.isdir(PRE): PRE = ROOT   # după lansare, paginile sunt în rădăcină
 
 ORASE = ['Voluntari', 'Pantelimon', 'Popești-Leordeni', 'Bragadiru', 'Buftea', 'Chitila', 'Otopeni', 'Măgurele']
 COMUNE_PAG = ['Chiajna', 'Dobroești', 'Berceni', 'Domnești', 'Jilava', 'Tunari', 'Mogoșoaia', 'Ștefăneștii de Jos']
