@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"><defs><linearGradient id="b" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#d9dee5"/></linearGradient><radialGradient id="l" cx=".4" cy=".35" r=".7"><stop offset="0" stop-color="#4a6380"/><stop offset=".45" stop-color="#14202e"/><stop offset="1" stop-color="#05090e"/></radialGradient></defs>
+<rect x="250" y="168" width="22" height="70" rx="8" fill="#cfd5dd"/><ellipse cx="261" cy="246" rx="44" ry="14" fill="#c3cad3"/><ellipse cx="261" cy="242" rx="44" ry="14" fill="#e6eaef"/>
+<rect x="70" y="92" width="250" height="96" rx="40" fill="url(#b)" stroke="#bfc6cf" stroke-width="2"/><path d="M60 86h230a20 20 0 0 1 20 20v6H60z" fill="#eef1f4" stroke="#bfc6cf" stroke-width="2"/>
+<rect x="60" y="110" width="58" height="72" rx="14" fill="#1b2633"/><circle cx="92" cy="146" r="25" fill="url(#l)"/><circle cx="85" cy="138" r="6" fill="#9fc3e6" opacity=".55"/>
+<circle cx="75" cy="122" r="3.5" fill="#f5a100"/><circle cx="110" cy="122" r="3" fill="#7d8a99"/><text x="215" y="150" font-family="Arial" font-weight="700" font-size="16" fill="#9aa4b0">HiLook</text></svg>
