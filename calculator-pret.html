@@ -148,12 +148,12 @@
     <section class="s24c-sec"><img alt="" width="1" height="1" style="position:absolute;opacity:0" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" onload="window.s24p=window.s24p||{b:189,c:3,x:50,l:150};window.s24c=function(m,id,d){var g=function(x){return document.getElementById(x)},n=function(x){return Math.max(0,parseInt(g(x).value,10)||0)},P=window.s24p;if(m==='step'){g(id).value=Math.max(0,n(id)+d)}var a=n('s24c-int'),b=n('s24c-ext'),c=n('s24c-lift'),h=g('s24-detalii');if(h){h.value='interior:'+a+',exterior:'+b+',lift:'+c}var go=g('s24c-go');if(m==='calc'){var k=Math.max(P.c,a+b)+c;g('s24c-total').textContent=(P.b+Math.max(0,a+b-P.c)*P.x+c*P.l).toLocaleString('ro-RO')+' lei / lună';g('s24c-sum').textContent=k+(k===1?' cameră':' camere')+(a+b<P.c?' (minim '+P.c+' incluse)':'')+'. Completează formularul de mai jos și primești oferta detaliată.';if(go){go.style.display='block'}}else{g('s24c-total').textContent=P.b.toLocaleString('ro-RO')+' lei / lună';g('s24c-sum').textContent='Minim '+P.c+' camere. Alege numărul de camere și apasă Calculează preț.';if(go){go.style.display='none'}}};window.s24c('reset');try{fetch('https://proxy.supraveghere24h.ro/public/prices').then(function(r){return r.json()}).then(function(j){if(j&&j.basePrice){window.s24p={b:j.basePrice,c:j.baseCams||3,x:j.extraPrice||0,l:j.liftPrice||0};window.s24c('reset')}}).catch(function(){})}catch(e){}">
       <div class="s24c-wrap"><span class="s24c-badge">NOU!</span>
         <h1 class="s24c-h">Calculează singur prețul pentru blocul tău</h1>
-        <p class="s24c-sub">Sisteme cu rezoluție de 5 MP la prețul sistemelor cu rezoluție de 2 MP!</p>
+        <p class="s24c-sub">Sisteme cu rezoluție de 4 MP la prețul sistemelor cu rezoluție de 2 MP!</p>
         <p class="s24c-hl">Alege numărul de camere de care are nevoie blocul și vezi imediat abonamentul lunar, în condițiile preferențiale pentru asociații de proprietari.</p>
         <div class="s24c-box">
           <div class="s24c-in">
             <p class="s24c-t">Echipamente necesare</p>
-            <p class="s24c-eq">Folosim camere IP Hikvision, Dahua și HiLook, de minimum 5 MP.</p>
+            <p class="s24c-eq">Folosim camere IP Hikvision, Dahua și HiLook, de minimum 4 MP.</p>
             <div class="s24c-fld"><label class="s24c-lab" for="s24c-int">Camere pentru interiorul imobilului</label>
               <p class="s24c-hint">Scări, culoare, holuri.</p>
               <div class="s24c-row"><button type="button" class="s24c-btnq" onclick="s24c('step','s24c-int',-1)" aria-label="Scade camere interior">−</button><input class="s24c-num" type="number" id="s24c-int" min="0" max="200" value="3" oninput="s24c('reset')"><button type="button" class="s24c-btnq" onclick="s24c('step','s24c-int',1)" aria-label="Crește camere interior">+</button></div>

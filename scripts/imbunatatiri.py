@@ -72,7 +72,7 @@ def get_title_desc(s):
 # ---------- 1. prima pagină: titlu, descriere, butoane ----------
 p = os.path.join(PRE, 'index.html'); s = open(p).read()
 s = s.replace('<title>Supraveghere24h.ro</title>',
-  '<title>Supraveghere video pentru blocuri, fără investiție – SUPRAVEGHERE24h</title>\n  <meta content="Sisteme de supraveghere video pentru asociații de proprietari din București: camere IP Hikvision, Dahua și HiLook de minimum 5 MP, instalare gratuită, abonament lunar fix de la 189 lei. Calculează prețul online." name="description">')
+  '<title>Supraveghere video pentru blocuri, fără investiție – SUPRAVEGHERE24h</title>\n  <meta content="Sisteme de supraveghere video pentru asociații de proprietari din București: camere IP Hikvision, Dahua și HiLook de minimum 4 MP, instalare gratuită, abonament lunar fix de la 189 lei. Calculează prețul online." name="description">')
 s = s.replace('''          <a href="contact.html" class="s24-btn s24-btn-a">Cere ofertă gratuită</a>
           <a href="#oferta" class="s24-btn s24-btn-o">Vezi ce include</a>''',
 '''          <a href="calculator-pret.html" class="s24-btn s24-btn-a">Calculează prețul blocului</a>
@@ -98,14 +98,14 @@ def sector_page(n):
     cart = SECT[n]; s = tpl
     title = f'Supraveghere video bloc Sector {n} București – SUPRAVEGHERE24h'
     desc = (f'Supraveghere video pentru blocuri și asociații de proprietari din Sectorul {n} ({", ".join(cart[:4])} și alte cartiere): '
-            'camere IP Hikvision, Dahua și HiLook de minimum 5 MP, instalare gratuită, abonament de la 189 lei / lună.')
+            'camere IP Hikvision, Dahua și HiLook de minimum 4 MP, instalare gratuită, abonament de la 189 lei / lună.')
     s = re.sub(r'<title>.*?</title>', f'<title>{H.escape(title)}</title>', s, count=1)
     s = re.sub(r'<meta content="[^"]*" name="description">', f'<meta content="{H.escape(desc, quote=True)}" name="description">', s, count=1)
     s = s.replace('<span class="s24-pill">OFERTĂ PENTRU ASOCIAȚII DE PROPRIETARI</span>', f'<span class="s24-pill">SECTORUL {n} · BUCUREȘTI</span>', 1)
     s = s.replace('<h1 class="s24-h1">Supraveghere video pentru blocul tău, <span class="s24-h1-a">fără costuri de investiție</span></h1>',
                   f'<h1 class="s24-h1">Supraveghere video pentru blocuri din Sectorul {n}, <span class="s24-h1-a">fără costuri de investiție</span></h1>', 1)
-    s = s.replace('Instalăm, întreținem și garantăm un sistem complet de camere IP Hikvision, Dahua și HiLook de minimum 5 MP.',
-                  f'Montăm sisteme de supraveghere video pentru asociațiile de proprietari din Sectorul {n}: {", ".join(cart[:3])}, {cart[3]} și nu numai. Instalăm, întreținem și garantăm un sistem complet de camere IP Hikvision, Dahua și HiLook de minimum 5 MP.', 1)
+    s = s.replace('Instalăm, întreținem și garantăm un sistem complet de camere IP Hikvision, Dahua și HiLook de minimum 4 MP.',
+                  f'Montăm sisteme de supraveghere video pentru asociațiile de proprietari din Sectorul {n}: {", ".join(cart[:3])}, {cart[3]} și nu numai. Instalăm, întreținem și garantăm un sistem complet de camere IP Hikvision, Dahua și HiLook de minimum 4 MP.', 1)
     chips = ''.join(f'<span style="display:inline-block;background:#fff;border:1px solid #E1E6EC;border-radius:999px;padding:8px 16px;margin:0 8px 10px 0;font-weight:600;color:#0D1F33">{H.escape(c)}</span>' for c in cart)
     others = ' · '.join(f'<a href="supraveghere-video-bloc-sector-{k}.html" style="color:#0D1F33;font-weight:700">Sectorul {k}</a>' for k in range(1, 7) if k != n)
     zone = f'''  <section class="s24-base s24-sec" style="background:#F5F7FA">
