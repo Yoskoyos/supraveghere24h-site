@@ -2146,3 +2146,12 @@
 }
 
 
+
+/* bifa de acord (formulare) */
+.s24-chkl{display:flex;align-items:flex-start;gap:12px;cursor:pointer;margin:0;font-weight:400}
+.s24-cb{appearance:none;-webkit-appearance:none;flex-shrink:0;width:22px;height:22px;margin:1px 0 0;border:2px solid #9AA6B2;border-radius:6px;background:#fff;cursor:pointer;display:grid;place-content:center;transition:background .15s,border-color .15s}
+.s24-cb::after{content:"";width:6px;height:11px;border:solid #0D1F33;border-width:0 2.5px 2.5px 0;transform:rotate(45deg) scale(0);margin-top:-2px;transition:transform .12s}
+.s24-cb:checked{background:#F5A100;border-color:#F5A100}.s24-cb:checked::after{transform:rotate(45deg) scale(1)}
+.s24-cb:focus-visible{outline:3px solid rgba(245,161,0,.45);outline-offset:2px}
+.s24-chkl .s24-chk-t{color:#52606F;font-size:14px;line-height:1.5;font-weight:500}
+.s24-chkl .s24-chk-t a{color:#0D1F33;font-weight:700;text-decoration:underline}
