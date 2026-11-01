@@ -591,5 +591,13 @@
 })();
 </script><!-- /s24-anim -->
 <!-- Cloudflare Web Analytics --><script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "6923ad681c1647f7bb30355648c9ea10"}'></script><!-- End Cloudflare Web Analytics -->
+<!-- s24-bgtest --><style>.s24-bgbar{position:fixed;left:50%;transform:translateX(-50%);top:calc(10px + env(safe-area-inset-top,0px));z-index:1000;display:flex;gap:6px;background:#0D1F33;padding:6px;border-radius:999px;box-shadow:0 8px 24px rgba(0,0,0,.35)}.s24-bgbar a{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font:700 14px/1 Montserrat,Arial,sans-serif;text-decoration:none;background:rgba(255,255,255,.1)}.s24-bgbar a.on{background:#F5A100;color:#0D1F33}</style>
+<script>(function(){var m=/[?&]fundal=(\d)/.exec(location.search);if(!m)return;var n=+m[1];
+var U=['', 'https://images.unsplash.com/photo-1723641989517-7ef7f23a824a', 'https://images.unsplash.com/photo-1756158361809-f5b8dcd0421a', 'https://images.unsplash.com/photo-1689969599825-40b9a4e6cecc',
+'https://images.unsplash.com/photo-1708310202362-bb5fa64a6a25', 'https://images.unsplash.com/photo-1749408157238-0722e7776827', 'https://images.pexels.com/photos/430208/pexels-photo-430208.jpeg'];
+var h=document.querySelector('.s24-hero');if(h&&U[n]){var w=innerWidth<700?1000:1900,u=U[n]+(U[n].indexOf('pexels')>0?'?auto=compress&w='+w:'?auto=format&fit=crop&q=70&w='+w);
+var g=innerWidth<700?'linear-gradient(rgba(13,31,51,.84),rgba(13,31,51,.90))':'linear-gradient(90deg,rgba(13,31,51,.95) 0%,rgba(13,31,51,.84) 50%,rgba(13,31,51,.62) 100%)';
+h.style.background=g+',url('+u+') center/cover no-repeat #0D1F33';}
+var b=document.createElement('div');b.className='s24-bgbar';for(var i=0;i<U.length;i++){var a=document.createElement('a');a.href='?fundal='+i;a.textContent=i?i:'✕';if(i===n)a.className='on';b.appendChild(a);}document.body.appendChild(b);})();</script><!-- /s24-bgtest -->
 </body>
 </html>
