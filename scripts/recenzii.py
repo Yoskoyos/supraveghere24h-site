@@ -18,12 +18,16 @@ for f in sorted(os.listdir(PRE)):
     open(p, 'w').write(t); n += 1
 
 SEC = f'''  <section class="s24-base s24-sec s24-reviews" style="background:#0D1F33">
-    <div class="s24-wrap" style="text-align:center">
-      <div class="s24-eyebrow" style="color:#F5A100">PĂRERILE CLIENȚILOR</div>
-      <h2 class="s24-h2" style="color:#fff">Ai lucrat cu noi? Spune-ne cum a fost</h2>
-      <p class="s24-sub" style="color:#C9D4E0;margin:12px auto 0;max-width:620px">Profilul nostru de pe Google este nou. Dacă blocul tău are deja sistemul nostru, o recenzie scurtă ne ajută foarte mult și le arată altor asociații la ce să se aștepte.</p>
-      <a href="{URL}" target="_blank" rel="noopener" class="s24-btn s24-btn-a" style="margin-top:24px;display:inline-flex;align-items:center;gap:10px">
-        <span style="letter-spacing:2px">★★★★★</span> Lasă o recenzie pe Google</a>
+    <div class="s24-wrap">
+      <div style="max-width:760px;margin:0 auto;text-align:center;background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:40px 28px">
+        <div style="color:#F5A100;font-size:28px;letter-spacing:6px;line-height:1;margin-bottom:14px" aria-hidden="true">★★★★★</div>
+        <div class="s24-eyebrow" style="color:#F5A100;text-align:center">PĂRERILE CLIENȚILOR</div>
+        <h2 class="s24-h2" style="color:#fff;text-align:center;margin:8px auto 0;max-width:none">Ai lucrat cu noi? Spune-ne cum a fost</h2>
+        <p class="s24-sub" style="color:#C9D4E0;margin:14px auto 0;max-width:560px;text-align:center">Profilul nostru de pe Google este nou. Dacă imobilul vostru are deja sistemul nostru, o recenzie scurtă ne ajută foarte mult și le arată altor asociații la ce să se aștepte.</p>
+        <a href="{URL}" target="_blank" rel="noopener" class="s24-btn s24-btn-a" style="margin:26px auto 0;display:inline-flex;align-items:center;gap:10px">
+          <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path fill="#0D1F33" d="M21.35 11.1H12v2.9h5.35c-.25 1.4-1.6 4.1-5.35 4.1a5.9 5.9 0 010-11.8c1.8 0 3 .8 3.7 1.4l2.5-2.4A9.4 9.4 0 0012 2.6a9.4 9.4 0 100 18.8c5.4 0 9-3.8 9-9.2 0-.6 0-1-.15-1.1z"/></svg>
+          Lasă o recenzie pe Google</a>
+      </div>
     </div>
   </section>
 '''
