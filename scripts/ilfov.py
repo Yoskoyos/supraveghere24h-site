@@ -25,6 +25,7 @@ def link(name):
 tpl = open(os.path.join(PRE, 'oferta-asociatii.html')).read()
 tpl = re.sub(r'  <!-- s24-seo -->.*?<!-- /s24-seo -->\n', '', tpl, flags=re.S)
 tpl = re.sub(r'\n<!-- s24-float:.*?<!-- /s24-float -->\n', '', tpl, flags=re.S)
+tpl = tpl.replace('<a href="oferta-asociatii.html" aria-current="page" class="s24-link w--current">', '<a href="oferta-asociatii.html" class="s24-link">')
 
 CHIP = 'display:inline-block;background:#fff;border:1px solid #E1E6EC;border-radius:999px;padding:8px 16px;margin:0 8px 10px 0;font-weight:600;color:#0D1F33;text-decoration:none'
 def chips(names): return ''.join(f'<a href="{link(n)}" style="{CHIP}">{H.escape(n)}</a>' if link(n) else f'<span style="{CHIP}">{H.escape(n)}</span>' for n in names)

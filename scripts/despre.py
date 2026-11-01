@@ -7,6 +7,7 @@ if not os.path.isdir(PRE): PRE = ROOT   # după lansare, paginile sunt în răd�
 tpl = open(os.path.join(PRE, 'oferta-asociatii.html')).read()
 tpl = re.sub(r'  <!-- s24-seo -->.*?<!-- /s24-seo -->\n', '', tpl, flags=re.S)
 tpl = re.sub(r'\n<!-- s24-float:.*?<!-- /s24-float -->\n', '', tpl, flags=re.S)
+tpl = tpl.replace('<a href="oferta-asociatii.html" aria-current="page" class="s24-link w--current">', '<a href="oferta-asociatii.html" class="s24-link">')
 
 title = 'Despre noi – SUPRAVEGHERE24h, Yca Solutions SRL'
 desc = ('SUPRAVEGHERE24h este brandul Yca Solutions SRL, firmă din București înființată în 2021. Montăm și întreținem sisteme de '
