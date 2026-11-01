@@ -10,6 +10,10 @@ n = 0
 for f in sorted(os.listdir(PRE)):
     if not f.endswith('.html'): continue
     p = os.path.join(PRE, f); t = open(p).read()
+    if f == 'index.html':  # nu pe prima pagină
+        t2 = t.replace('\n          ' + FLINK, '')
+        if t2 != t: open(p, 'w').write(t2)
+        continue
     if URL in t and 'class="s24-flink">★' in t: continue
     anchor = '<a href="despre-noi.html" class="s24-flink">Despre noi</a><span class="s24-fsep">·</span>'
     if anchor not in t: print('fără subsol:', f); continue
