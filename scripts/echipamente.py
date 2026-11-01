@@ -4,14 +4,14 @@ import os, re, html as H
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 BULLET = dict(img='images/cam-hilook-bullet.svg', alt='Cameră IP bullet HiLook IPC-B140HA-LUC',
-  h='Cameră IP exterior HiLook IPC-B140HA-LUC — 4 MP, Smart Hybrid Light, microfon',
+  h='Cameră IP exterior HiLook IPC-B140HA-LUC — 4 MP (2560 × 1440), Smart Hybrid Light, microfon',
   lead='Camera de bază pentru exteriorul blocului: parcare, intrări, loc de joacă, căi de acces.',
   li=['Rezoluție 4 MP (2560 × 1440)', 'Lentilă 2,8 mm, unghi larg de aproximativ 103°', 'Iluminare duală Smart Hybrid Light: infraroșu sau lumină albă, până la 20 m',
       'Imagine color noaptea când se aprinde lumina albă', 'Microfon încorporat', 'Detecție de mișcare 2.0, cu filtrare oameni', 'Compresie H.265+ (ocupă puțin pe hard disk)',
       'Protecție IP67 la apă și praf', 'Alimentare prin cablul de rețea (PoE)'],
   meta=[('Cod produs', 'IPC-B140HA-LUC'), ('Marcă', 'HiLook by Hikvision'), ('Tip', 'Bullet, exterior'), ('Garanție', 'Inclusă pe toată durata abonamentului')])
 TURRET = dict(img='images/cam-hilook-turret.svg', alt='Cameră IP turret HiLook IPC-T240HA-LUC',
-  h='Cameră IP turret HiLook IPC-T240HA-LUC — 4 MP, Smart Hybrid Light, microfon',
+  h='Cameră IP turret HiLook IPC-T240HA-LUC — 4 MP (2560 × 1440), Smart Hybrid Light, microfon',
   lead='Camera compactă pentru interior: scări, holuri, lift, intrări. Rezistă și afară, sub streașină.',
   li=['Rezoluție 4 MP (2560 × 1440)', 'Lentilă 2,8 mm, unghi larg de aproximativ 104°', 'Iluminare duală Smart Hybrid Light: infraroșu sau lumină albă, până la 20 m',
       'Microfon încorporat', 'Detecție de mișcare 2.0, cu filtrare oameni', 'Compresie H.265+', 'Protecție IP67', 'Alimentare prin cablul de rețea (PoE)', 'Carcasă discretă, greu de rotit sau de acoperit'],
@@ -19,7 +19,7 @@ TURRET = dict(img='images/cam-hilook-turret.svg', alt='Cameră IP turret HiLook 
 KIT = dict(img='images/kit-hilook-8.svg', alt='Kit supraveghere 8 camere HiLook cu NVR',
   h='Sistem complet pentru bloc — 8 camere HiLook, NVR și rack',
   lead='Configurația tipică pe care o montăm la un bloc: 4 camere afară, 4 camere înăuntru, înregistrare locală, totul închis în rack.',
-  li=['4 × cameră exterior HiLook IPC-B140HA-LUC (4 MP, Smart Hybrid Light, microfon)', '4 × cameră interior HiLook IPC-T240HA-LUC (4 MP, Smart Hybrid Light, microfon)',
+  li=['4 × cameră exterior HiLook IPC-B140HA-LUC (4 MP, 2560 × 1440, Smart Hybrid Light, microfon)', '4 × cameră interior HiLook IPC-T240HA-LUC (4 MP, 2560 × 1440, Smart Hybrid Light, microfon)',
       'Recorder NVR HiLook NVR-108MH-C(E), 8 canale, înregistrare 4K, H.265+, Motion Detection 2.0', 'Hard disk pentru înregistrare continuă (până la 8 TB)',
       'Rack metalic Safer SAF-WMA-6604, 4U, ușă din sticlă securizată, cu yală', 'Cablu, doze, pat de cablu, switch PoE și manoperă incluse'],
   meta=[('Camere', '8 (4 exterior + 4 interior)'), ('Recorder', 'HiLook NVR-108MH-C(E)'), ('Rack', 'Safer SAF-WMA-6604'), ('Garanție', 'Inclusă pe toată durata abonamentului')])

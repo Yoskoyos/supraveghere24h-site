@@ -41,7 +41,7 @@ body = f'''  <section class="s24-base s24-dark s24-ohero">
         <div class="s24-ohero-row"><span>Din</span><span class="s24-ohero-val">2021</span></div>
         <div class="s24-ohero-row"><span>Sediu</span><span class="s24-ohero-val">București, Sector 1</span></div>
         <div class="s24-ohero-row"><span>Zonă</span><span class="s24-ohero-val">București și Ilfov</span></div>
-        <div class="s24-ohero-row"><span>Echipamente</span><span class="s24-ohero-val">Hikvision, Dahua, HiLook · minim 4 MP</span></div>
+        <div class="s24-ohero-row"><span>Echipamente</span><span class="s24-ohero-val">Hikvision, Dahua, HiLook · minim 4 MP (2560 × 1440)</span></div>
         <div class="s24-ohero-row"><span>Acreditare</span><span class="s24-ohero-val">Poliția Română</span></div>
         <p class="s24-ohero-note">Program: luni–vineri, 9:00–18:00.</p>
       </div>
@@ -60,7 +60,7 @@ body = f'''  <section class="s24-base s24-dark s24-ohero">
       <div class="s24-eyebrow">CE NE DEFINEȘTE</div>
       <h2 class="s24-h2">Cum lucrăm</h2>
       <div class="s24-grid">
-{card('01', 'Acreditați de Poliția Română', 'Proiectăm și montăm sisteme de supraveghere video conform cerințelor legale, ca firmă acreditată.')}{card('02', 'Echipamente profesionale', 'Folosim camere IP Hikvision, Dahua și HiLook de minimum 4 MP și recordere video (NVR) dedicate, potrivite pentru funcționare non-stop.')}{card('03', 'Monitorizare 24/7', 'Sistemele montate sunt verificate automat, non-stop, de platforma noastră: aflăm imediat dacă un NVR sau o cameră nu mai funcționează și intervenim.')}{card('04', 'Garanție completă', 'Garanția acoperă toată durata contractului, inclusiv furtul și vandalismul. Service-ul și mentenanța sunt incluse.')}{card('05', 'Transparență', 'Prețul se vede direct pe site, în calculator. Abonamentul lunar este fix și nu există costuri ascunse.')}{card('06', 'Datele rămân în bloc', 'Imaginile se păstrează local, în NVR-ul din bloc, iar acces au doar persoanele desemnate de asociație.', True)}      </div>
+{card('01', 'Acreditați de Poliția Română', 'Proiectăm și montăm sisteme de supraveghere video conform cerințelor legale, ca firmă acreditată.')}{card('02', 'Echipamente profesionale', 'Folosim camere IP Hikvision, Dahua și HiLook de minimum 4 MP (2560 × 1440) și recordere video (NVR) dedicate, potrivite pentru funcționare non-stop.')}{card('03', 'Monitorizare 24/7', 'Sistemele montate sunt verificate automat, non-stop, de platforma noastră: aflăm imediat dacă un NVR sau o cameră nu mai funcționează și intervenim.')}{card('04', 'Garanție completă', 'Garanția acoperă toată durata contractului, inclusiv furtul și vandalismul. Service-ul și mentenanța sunt incluse.')}{card('05', 'Transparență', 'Prețul se vede direct pe site, în calculator. Abonamentul lunar este fix și nu există costuri ascunse.')}{card('06', 'Datele rămân în bloc', 'Imaginile se păstrează local, în NVR-ul din bloc, iar acces au doar persoanele desemnate de asociație.', True)}      </div>
     </div>
   </section>
   <section class="s24-base s24-sec">

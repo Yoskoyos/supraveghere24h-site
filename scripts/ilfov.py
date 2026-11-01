@@ -36,7 +36,7 @@ def page(fname, title, desc, pill, h1a, lead, zone_eyebrow, zone_h, zone_sub, zo
     s = s.replace('<span class="s24-pill">OFERTĂ PENTRU ASOCIAȚII DE PROPRIETARI</span>', f'<span class="s24-pill">{H.escape(pill)}</span>', 1)
     s = s.replace('<h1 class="s24-h1">Supraveghere video pentru blocul tău, <span class="s24-h1-a">fără costuri de investiție</span></h1>',
                   f'<h1 class="s24-h1">{h1a}, <span class="s24-h1-a">fără costuri de investiție</span></h1>', 1)
-    s = s.replace('Instalăm, întreținem și garantăm un sistem complet de camere IP Hikvision, Dahua și HiLook de minimum 4 MP.', lead + ' Instalăm, întreținem și garantăm un sistem complet de camere IP Hikvision, Dahua și HiLook de minimum 4 MP.', 1)
+    s = s.replace('Instalăm, întreținem și garantăm un sistem complet de camere IP Hikvision, Dahua și HiLook de minimum 4 MP (2560 × 1440).', lead + ' Instalăm, întreținem și garantăm un sistem complet de camere IP Hikvision, Dahua și HiLook de minimum 4 MP (2560 × 1440).', 1)
     zone = f'''  <section class="s24-base s24-sec" style="background:#F5F7FA">
     <div class="s24-wrap">
       <div class="s24-eyebrow">{zone_eyebrow}</div>
@@ -74,7 +74,7 @@ for name in ORASE + COMUNE_PAG:
     vecini = [n for n in (ORASE + COMUNE_PAG) if n != name][:6]
     page(link(name),
          f'Supraveghere video bloc {name}, Ilfov – SUPRAVEGHERE24h',
-         f'Supraveghere video pentru blocuri și ansambluri rezidențiale din {name}, Ilfov: camere IP Hikvision, Dahua și HiLook de minimum 4 MP, instalare gratuită, abonament de la 189 lei / lună.',
+         f'Supraveghere video pentru blocuri și ansambluri rezidențiale din {name}, Ilfov: camere IP Hikvision, Dahua și HiLook de minimum 4 MP (2560 × 1440), instalare gratuită, abonament de la 189 lei / lună.',
          f'{name.upper()} · ILFOV',
          f'Supraveghere video pentru blocuri din {name}',
          f'Montăm sisteme de supraveghere video pentru asociațiile de proprietari și ansamblurile rezidențiale din {tip} {name}{", " + ex if ex else ""}.',
