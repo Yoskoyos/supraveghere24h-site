@@ -2155,3 +2155,14 @@
 .s24-cb:focus-visible{outline:3px solid rgba(245,161,0,.45);outline-offset:2px}
 .s24-chkl .s24-chk-t{color:#52606F;font-size:14px;line-height:1.5;font-weight:500}
 .s24-chkl .s24-chk-t a{color:#0D1F33;font-weight:700;text-decoration:underline}
+
+/* meniul de sus: scris mai aerisit, linie portocalie la hover și la pagina curentă */
+@media screen and (min-width: 768px) {
+  .s24-links { gap: 8px 34px; }
+  .s24-link { position: relative; color: #3C4A59; font-size: 15.5px; font-weight: 600; letter-spacing: .2px; padding: 12px 2px; transition: color .15s; }
+  .s24-link::after { content: ""; position: absolute; left: 2px; right: 2px; bottom: 5px; height: 2.5px; border-radius: 2px; background: #F5A100; transform: scaleX(0); transform-origin: left center; transition: transform .22s ease; }
+  .s24-link:hover, .s24-link:focus-visible { color: #0D1F33; }
+  .s24-link:hover::after, .s24-link:focus-visible::after, .s24-link.w--current::after { transform: scaleX(1); }
+  .s24-link.w--current { color: #0D1F33; font-weight: 700; }
+}
+@media (prefers-reduced-motion: reduce) { .s24-link::after { transition: none; } }
