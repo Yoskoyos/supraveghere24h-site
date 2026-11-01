@@ -220,9 +220,7 @@ for f in sorted(os.listdir(PRE)):
     if f == 'index.html':
         k = s.find('<div class="s24-ic-col">'); assert k > 0
         k += len('<div class="s24-ic-col">'); s = s[:k] + MONITOR + s[k:]
-    if f == 'calculator-pret.html':
-        k = s.find('<p class="s24c-min">'); assert k > 0
-        k = s.find('</p>', k) + 4; s = s[:k] + building() + s[k:]
+    # blocul cu camere din calculator a fost scos la cererea utilizatorului (01.11.2026)
     s = s.replace('</body>', BLOCK + '</body>', 1)
     open(p, 'w').write(s); n += 1
 print('animații pe', n, 'pagini')
