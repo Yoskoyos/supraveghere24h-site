@@ -62,7 +62,7 @@ PAGES = {
   'camere-ip-interior.html': ('Camere IP interior', 'Pentru scări, holuri, lift și intrări.', 'interior,lift'),
   'kit-uri-camere.html': ('Sistem complet pentru bloc', 'Tot ce intră într-un sistem montat de noi: camere, recorder, rack și instalare.', ''),
   'nvr-uri.html': ('NVR-uri', 'Recorderele în care se înregistrează camerele, montate în rack închis cu yală.', 'nvr'),
-  'hard-disk.html': ('Hard disk', 'Hard diskurile de supraveghere pe care se păstrează înregistrările.', 'hdd'),
+  'stocare.html': ('Stocare', 'Hard diskurile de supraveghere pe care se păstrează înregistrările.', 'hdd'),
   'accesorii.html': ('Accesorii', 'Rack-uri, switch-uri PoE, surse și alte accesorii pentru sistem.', 'rack,retea,altele'),
 }
 INTRO = 'Camerele IP pe care le montăm: HiLook, Hikvision și Dahua, cu iluminare duală și microfon. Echipamentele sunt incluse în abonament, fără investiție inițială.'

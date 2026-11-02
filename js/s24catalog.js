@@ -2,7 +2,7 @@
    Dacă serverul nu răspunde sau lista e goală, rămâne conținutul static al paginii. */
 (function () {
   var API = 'https://proxy.supraveghere24h.ro/public/catalog';
-  var CAT = { exterior: 'Cameră exterior', interior: 'Cameră interior', lift: 'Cameră lift', nvr: 'Recorder (NVR)', hdd: 'Hard disk', rack: 'Rack și protecție', retea: 'Rețea și alimentare', altele: 'Altele' };
+  var CAT = { exterior: 'Cameră exterior', interior: 'Cameră interior', lift: 'Cameră lift', nvr: 'Recorder (NVR)', hdd: 'Stocare (hard disk)', rack: 'Rack și protecție', retea: 'Rețea și alimentare', altele: 'Altele' };
   var FALLBACK = { exterior: 'images/cam-hilook-bullet.svg', interior: 'images/cam-hilook-turret.svg', lift: 'images/cam-hilook-turret.svg' };
   function esc(s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
   function card(x) {

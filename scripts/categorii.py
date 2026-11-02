@@ -3,10 +3,10 @@
 import os, re
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CATS = [('camere-ip-interior.html', 'Camere IP interior'), ('camere-ip-exterior.html', 'Camere IP exterior'),
-        ('nvr-uri.html', 'NVR-uri'), ('hard-disk.html', 'Hard disk'), ('accesorii.html', 'Accesorii')]
+        ('nvr-uri.html', 'NVR-uri'), ('stocare.html', 'Stocare'), ('accesorii.html', 'Accesorii')]
 NEW = {  # pagină: (titlu, descriere)
   'nvr-uri.html': ('NVR-uri', 'Recorderele NVR pe care le montăm la blocuri: înregistrare locală, acces de pe telefon, incluse în abonament.'),
-  'hard-disk.html': ('Hard disk', 'Hard diskurile de supraveghere folosite în sistemele noastre: înregistrare continuă, incluse în abonament.'),
+  'stocare.html': ('Stocare', 'Hard diskurile de supraveghere pe care se păstrează înregistrările din sistemele noastre, incluse în abonament.'),
   'accesorii.html': ('Accesorii', 'Rack-uri, switch-uri PoE, surse și alte accesorii pentru sistemele de supraveghere ale blocurilor.'),
 }
 SRC = os.path.join(ROOT, 'camere-ip-interior.html')
