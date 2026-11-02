@@ -2166,3 +2166,7 @@
   .s24-link.w--current { color: #0D1F33; font-weight: 700; }
 }
 @media (prefers-reduced-motion: reduce) { .s24-link::after { transition: none; } }
+
+.s24-side-sub.w--current{color:#0D1F33;font-weight:700;background:#FFF4D6;border-radius:8px}
+.s24-side-sub{display:block;min-height:36px;line-height:36px;padding-left:12px;border-radius:8px}
+.s24-side-sub:hover{background:#F3F5F8}
