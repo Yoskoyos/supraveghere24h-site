@@ -25,13 +25,16 @@
     });
   }
   function run() {
-    var box = document.getElementById('camere-ip'); if (!box || !window.fetch) return;
+    var box = document.getElementById('camere-ip'); if (!box) return;
+    var slot = box.querySelector('.s24-cat-items') || box;
+    var cats = (box.getAttribute('data-cats') || '').split(',').filter(Boolean);
+    var empty = '<p style="margin:18px 0 0;color:#3D4F63">Lista echipamentelor se actualizează. Pentru detalii despre modelele pe care le montăm, sună-ne la <a href="tel:+40763354355" style="color:#0D1F33;font-weight:700">0763 354 355</a>.</p>';
+    if (!window.fetch) { slot.innerHTML = empty; return; }
     fetch(API, { cache: 'no-cache' }).then(function (r) { return r.ok ? r.json() : null; }).then(function (d) {
-      if (!d || !d.items || !d.items.length) return;
-      var h = box.querySelector('.s24-block-h'), p = box.querySelector('.s24-block-p');
-      box.innerHTML = (h ? h.outerHTML : '') + (p ? p.outerHTML : '') + d.items.map(card).join('');
-      bindZoom(box);
-    }).catch(function () {});
+      var items = (d && d.items || []).filter(function (x) { return !cats.length || cats.indexOf(x.cat) >= 0; });
+      slot.innerHTML = items.length ? items.map(card).join('') : empty;
+      bindZoom(slot);
+    }).catch(function () { slot.innerHTML = empty; });
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', run); else run();
 })();

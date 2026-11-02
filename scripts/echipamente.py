@@ -46,18 +46,21 @@ def card(p):
             </div>
           </div>
 '''
-def block(h, p, items):
-    return f'''<div id="camere-ip" class="s24-block">
+def block(h, p, cats):
+    # cardurile vin din aplicație (tabul Echipamente) prin js/s24catalog.js
+    return f'''<div id="camere-ip" class="s24-block" data-cats="{cats}">
           <h2 class="s24-block-h">{h}</h2>
           <p class="s24-block-p">{p}</p>
-{''.join(card(x) for x in items)}        </div>'''
+          <div class="s24-cat-items"><p class="s24-cat-wait" style="margin:18px 0 0;color:#5A6B7D">Se încarcă echipamentele…</p></div>
+          <noscript><p>Lista echipamentelor are nevoie de JavaScript. Ne poți suna la 0763 354 355.</p></noscript>
+        </div>'''
 
 PAGES = {
-  'echipamente.html': ('Ce montăm la blocuri', 'Folosim camere IP HiLook, Hikvision și Dahua. Acestea sunt modelele pe care le montăm cel mai des.', [BULLET, TURRET, KIT]),
-  'camere-ip.html': ('Camere IP', 'Camerele pe care le montăm cel mai des, pentru exterior și interior.', [BULLET, TURRET]),
-  'camere-ip-exterior.html': ('Camere IP exterior', 'Pentru parcare, intrări, loc de joacă și căi de acces.', [BULLET, TURRET]),
-  'camere-ip-interior.html': ('Camere IP interior', 'Pentru scări, holuri, lift și intrări.', [TURRET]),
-  'kit-uri-camere.html': ('Sistem complet pentru bloc', 'Tot ce intră într-un sistem montat de noi: camere, recorder, rack și instalare.', [KIT]),
+  'echipamente.html': ('Ce montăm la blocuri', 'Folosim camere IP HiLook, Hikvision și Dahua. Acestea sunt modelele pe care le montăm cel mai des.', ''),
+  'camere-ip.html': ('Camere IP', 'Camerele pe care le montăm cel mai des, pentru exterior și interior.', 'exterior,interior,lift'),
+  'camere-ip-exterior.html': ('Camere IP exterior', 'Pentru parcare, intrări, loc de joacă și căi de acces.', 'exterior'),
+  'camere-ip-interior.html': ('Camere IP interior', 'Pentru scări, holuri, lift și intrări.', 'interior,lift'),
+  'kit-uri-camere.html': ('Sistem complet pentru bloc', 'Tot ce intră într-un sistem montat de noi: camere, recorder, rack și instalare.', ''),
 }
 INTRO = 'Camerele IP pe care le montăm: HiLook, Hikvision și Dahua, cu iluminare duală și microfon. Echipamentele sunt incluse în abonament, fără investiție inițială.'
 
@@ -70,8 +73,11 @@ def end_of_div(s, i):
 
 for f, (h, p, items) in PAGES.items():
     path = os.path.join(ROOT, f); s = open(path).read()
-    i = s.index('<div id="camere-ip" class="s24-block">'); j = end_of_div(s, i)
+    i = s.index('<div id="camere-ip" class="s24-block"'); j = end_of_div(s, i)
     s = s[:i] + block(h, p, items) + s[j:]
     s = re.sub(r'<p class="s24-shop-p">[^<]*</p>', f'<p class="s24-shop-p">{INTRO}</p>', s, count=1)
+    if 's24catalog.js' not in s:
+        s = s.replace('  <script src="js/s24formresult.js"', '  <script src="js/s24catalog.js?v=3" defer></script>\n  <script src="js/s24formresult.js"', 1)
+    s = s.replace('s24catalog.js?v=2', 's24catalog.js?v=3')
     open(path, 'w').write(s)
 print('echipamente actualizate pe', len(PAGES), 'pagini')
