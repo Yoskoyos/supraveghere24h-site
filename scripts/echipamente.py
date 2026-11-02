@@ -6,14 +6,14 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BULLET = dict(img='images/cam-hilook-bullet.svg', alt='Cameră IP bullet HiLook IPC-B140HA-LUC',
   h='Cameră IP exterior HiLook IPC-B140HA-LUC — 4 MP (2560 × 1440), Smart Hybrid Light, microfon',
   lead='Camera de bază pentru exteriorul blocului: parcare, intrări, loc de joacă, căi de acces.',
-  li=['Rezoluție 4 MP (2560 × 1440)', 'Lentilă 2,8 mm, unghi larg de aproximativ 103°', 'Iluminare duală Smart Hybrid Light: infraroșu sau lumină albă, până la 20 m',
+  li=['Rezoluție 4 MP (2560 × 1440)', 'Lentilă 2,8 mm, unghi larg de aproximativ 103°', 'Iluminare duală Smart Hybrid Light: infraroșu sau lumină albă, până la 40 m',
       'Imagine color noaptea când se aprinde lumina albă', 'Microfon încorporat', 'Detecție de mișcare 2.0, cu filtrare oameni', 'Compresie H.265+ (ocupă puțin pe hard disk)',
       'Protecție IP67 la apă și praf', 'Alimentare prin cablul de rețea (PoE)'],
   meta=[('Cod produs', 'IPC-B140HA-LUC'), ('Marcă', 'HiLook by Hikvision'), ('Tip', 'Bullet, exterior'), ('Garanție', 'Inclusă pe toată durata abonamentului')])
 TURRET = dict(img='images/cam-hilook-turret.svg', alt='Cameră IP turret HiLook IPC-T240HA-LUC',
   h='Cameră IP turret HiLook IPC-T240HA-LUC — 4 MP (2560 × 1440), Smart Hybrid Light, microfon',
   lead='Camera compactă pentru interior: scări, holuri, lift, intrări. Rezistă și afară, sub streașină.',
-  li=['Rezoluție 4 MP (2560 × 1440)', 'Lentilă 2,8 mm, unghi larg de aproximativ 104°', 'Iluminare duală Smart Hybrid Light: infraroșu sau lumină albă, până la 20 m',
+  li=['Rezoluție 4 MP (2560 × 1440)', 'Lentilă 2,8 mm, unghi larg de aproximativ 104°', 'Iluminare duală Smart Hybrid Light: infraroșu sau lumină albă, până la 40 m',
       'Microfon încorporat', 'Detecție de mișcare 2.0, cu filtrare oameni', 'Compresie H.265+', 'Protecție IP67', 'Alimentare prin cablul de rețea (PoE)', 'Carcasă discretă, greu de rotit sau de acoperit'],
   meta=[('Cod produs', 'IPC-T240HA-LUC'), ('Marcă', 'HiLook by Hikvision'), ('Tip', 'Turret, interior / exterior'), ('Garanție', 'Inclusă pe toată durata abonamentului')])
 KIT = dict(img='images/kit-hilook-8.svg', alt='Kit supraveghere 8 camere HiLook cu NVR',
