@@ -51,9 +51,9 @@ body = f'''  <section class="s24-base s24-dark s24-ohero">
   <section class="s24-base s24-sec">
     <div class="s24-wrap">
       <div class="s24-eyebrow">CINE SUNTEM</div>
-      <h2 class="s24-h2">O firmă mică, specializată pe blocuri</h2>
-      <p class="s24-sub">Am pornit în 2021 cu o idee simplă: o asociație de proprietari ar trebui să poată avea un sistem de supraveghere bun fără să strângă bani pentru investiția inițială. De aceea lucrăm pe bază de abonament lunar fix: noi montăm echipamentele, le întreținem și le garantăm pe toată durata contractului, iar la final ele rămân ale asociației.</p>
-      <p class="s24-sub" style="margin-top:14px">Lucrăm direct cu administratorii și cu comitetele asociațiilor, de la evaluarea blocului până la instruirea persoanelor care vor avea acces la imagini.</p>
+      <h2 class="s24-h2">Specializați în supraveghere video pentru blocuri</h2>
+      <p class="s24-sub">Din 2021 lucrăm cu asociații de proprietari din București și Ilfov. Am construit totul în jurul unei idei: un bloc merită un sistem de supraveghere de calitate, fără ca locatarii să plătească de la început o investiție mare. Asociația plătește un abonament lunar fix, iar noi ne ocupăm de montaj, întreținere și garanție pe toată durata contractului. La final, echipamentele rămân ale asociației.</p>
+      <p class="s24-sub" style="margin-top:14px">Lucrăm direct cu administratorul sau cu comitetul asociației: evaluăm blocul, propunem amplasarea camerelor, montăm sistemul și instruim persoanele care vor avea acces la imagini.</p>
     </div>
   </section>
   <section class="s24-base s24-sec" style="background:#F5F7FA">
