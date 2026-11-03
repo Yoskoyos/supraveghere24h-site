@@ -29,6 +29,8 @@
     var secs = document.querySelectorAll('.s24-reviews'); if (!secs.length || !window.fetch) return;
     fetch(API, { cache: 'no-cache' }).then(function (r) { return r.ok ? r.json() : null; }).then(function (d) {
       if (!d || !d.configured || !(d.reviews || []).length) return;
+      // siguranță: afișăm doar recenziile profilului nostru, niciodată ale altei firme
+      if (String(d.name || '').toLowerCase().replace(/[^a-z0-9]/g, '').indexOf('supraveghere24h') < 0) return;
       var st = document.createElement('style'); st.textContent = css; document.head.appendChild(st);
       var rating = (+d.rating || 0).toFixed(1).replace('.', ',');
       Array.prototype.forEach.call(secs, function (sec) {
