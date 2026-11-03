@@ -2195,3 +2195,27 @@
   .s24-nav-in > .s24-links .s24-link { font-size: 14px; }
   .s24-nav-in > .s24-btn { padding-left: 14px; padding-right: 14px; font-size: 15px; }
 }
+
+/* s24-bgfoto: poza cu camere (Scott Webb, Pexels) și pe celelalte secțiuni închise la culoare */
+.s24-ohero, .s24-contact, .s24-reviews {
+  background-color: #0D1F33 !important;
+  background-image: linear-gradient(90deg, rgba(13,31,51,.94) 0%, rgba(13,31,51,.8) 50%, rgba(13,31,51,.5) 100%), url("../images/hero-camere-1600.jpg");
+  background-image: linear-gradient(90deg, rgba(13,31,51,.94) 0%, rgba(13,31,51,.8) 50%, rgba(13,31,51,.5) 100%), image-set(url("../images/hero-camere-1600.webp") type("image/webp"), url("../images/hero-camere-1600.jpg") type("image/jpeg"));
+  background-size: cover;
+  background-position: right 30%;
+  background-repeat: no-repeat;
+}
+.s24-contact, .s24-reviews {
+  background-image: linear-gradient(rgba(13,31,51,.9), rgba(13,31,51,.84)), url("../images/hero-camere-1600.jpg");
+  background-image: linear-gradient(rgba(13,31,51,.9), rgba(13,31,51,.84)), image-set(url("../images/hero-camere-1600.webp") type("image/webp"), url("../images/hero-camere-1600.jpg") type("image/jpeg"));
+  background-position: center 40%;
+}
+@media screen and (max-width: 767px) {
+  .s24-ohero, .s24-contact, .s24-reviews {
+    background-image: linear-gradient(rgba(13,31,51,.78), rgba(13,31,51,.9)), url("../images/hero-camere-900.jpg");
+    background-image: linear-gradient(rgba(13,31,51,.78), rgba(13,31,51,.9)), image-set(url("../images/hero-camere-900.webp") type("image/webp"), url("../images/hero-camere-900.jpg") type("image/jpeg"));
+    background-position: 72% 30%;
+  }
+}
+.s24-reviews { background-image: linear-gradient(rgba(13,31,51,.9), rgba(13,31,51,.84)), url("../images/hero-camere-1600.jpg") !important; background-size: cover !important; background-position: center 40% !important; }
+@media screen and (max-width: 767px) { .s24-reviews { background-image: linear-gradient(rgba(13,31,51,.78), rgba(13,31,51,.9)), url("../images/hero-camere-900.jpg") !important; } }
