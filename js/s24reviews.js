@@ -9,7 +9,7 @@
     return '<span aria-label="' + n + ' din 5 stele" style="font-size:' + size + 'px;letter-spacing:2px;line-height:1">' + o + '</span>';
   }
   function initials(n) { return String(n || '?').trim().split(/\s+/).slice(0, 2).map(function (w) { return w.charAt(0); }).join('').toUpperCase(); }
-  var css = '.s24rv-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:16px;margin:30px 0 0;text-align:left}' +
+  var css = '.s24rv-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,360px));justify-content:center;gap:16px;margin:30px 0 0;text-align:left}@media(max-width:620px){.s24rv-grid{grid-template-columns:1fr}}' +
     '.s24rv-c{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:12px}' +
     '.s24rv-a{display:flex;align-items:center;gap:12px}.s24rv-a img,.s24rv-i{width:40px;height:40px;border-radius:50%;flex-shrink:0;object-fit:cover}' +
     '.s24rv-i{background:#1B7AB3;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15px}' +
