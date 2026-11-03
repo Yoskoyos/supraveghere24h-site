@@ -37,4 +37,7 @@ if 's24-reviews' not in t:
     i = t.find(mark); assert i > 0, 'nu găsesc secțiunea Datele firmei'
     t = t[:i] + SEC + t[i:]
     open(p, 'w').write(t)
+t = open(p).read()
+if 's24reviews.js' not in t:
+    open(p, 'w').write(t.replace('</body>', '<script src="js/s24reviews.js?v=1" defer></script>\n</body>', 1))
 print('Recenzii: link în subsol pe', n, 'pagini; secțiune pe despre-noi.html')
