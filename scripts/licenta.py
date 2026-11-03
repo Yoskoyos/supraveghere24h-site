@@ -10,14 +10,14 @@ if 'Licență Poliția Română' not in t:
     i = t.index('<tr><td style="padding:14px 18px;color:#52606F;border-bottom:1px solid #E1E6EC">Telefon</td>')
     t = t[:i] + ROW + t[i:]
 SEC = '''  <section class="s24-base s24-sec s24-licenta" id="licenta">
-    <div class="s24-wrap">
-      <div class="s24-eyebrow">AUTORIZARE</div>
-      <h2 class="s24-h2">Licența de funcționare de la Poliția Română</h2>
-      <p class="s24-sub" style="max-width:720px">Inspectoratul General al Poliției Române ne-a acordat licența nr. 6310/T din 14.06.2022, conform Legii nr. 333/2003. Licența ne permite „instalare, modificare sau întreținere a componentelor sau sistemelor de alarmare împotriva efracției” și este valabilă până la 13.06.2028.</p>
-      <a href="images/licenta-igpr.jpg" target="_blank" rel="noopener" style="display:block;max-width:720px;margin-top:24px;border:1px solid #E1E6EC;border-radius:14px;overflow:hidden;background:#fff">
+    <div class="s24-wrap" style="text-align:center">
+      <div class="s24-eyebrow" style="text-align:center">AUTORIZARE</div>
+      <h2 class="s24-h2" style="text-align:center;margin-left:auto;margin-right:auto">Licența de funcționare de la Poliția Română</h2>
+      <p class="s24-sub" style="max-width:720px;margin-left:auto;margin-right:auto;text-align:center">Inspectoratul General al Poliției Române ne-a acordat licența nr. 6310/T din 14.06.2022, conform Legii nr. 333/2003. Licența ne permite „instalare, modificare sau întreținere a componentelor sau sistemelor de alarmare împotriva efracției” și este valabilă până la 13.06.2028.</p>
+      <a href="images/licenta-igpr.jpg" target="_blank" rel="noopener" style="display:block;max-width:720px;margin:24px auto 0;border:1px solid #E1E6EC;border-radius:14px;overflow:hidden;background:#fff">
         <picture><source srcset="images/licenta-igpr-720.webp 720w, images/licenta-igpr.webp 1800w" sizes="(max-width: 767px) 100vw, 720px" type="image/webp"><img src="images/licenta-igpr-720.jpg" loading="lazy" width="720" height="499" alt="Licența de funcționare nr. 6310/T din 14.06.2022, emisă de Inspectoratul General al Poliției Române pentru Yca Solutions SRL" style="display:block;width:100%;height:auto"></picture>
       </a>
-      <p style="margin:10px 0 0;font-size:14px;color:#52606F">Apasă pe imagine ca s-o vezi mare. Copie pentru informare, cu filigran.</p>
+      <p style="margin:10px auto 0;font-size:14px;color:#52606F;text-align:center">Apasă pe imagine ca s-o vezi mare. Copie pentru informare, cu filigran.</p>
     </div>
   </section>
 '''
