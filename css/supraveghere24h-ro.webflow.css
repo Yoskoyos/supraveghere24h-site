@@ -2170,3 +2170,28 @@
 .s24-side-sub.w--current{color:#0D1F33;font-weight:700;background:#FFF4D6;border-radius:8px}
 .s24-side-sub{display:block;min-height:36px;line-height:36px;padding-left:12px;border-radius:8px}
 .s24-side-sub:hover{background:#F3F5F8}
+
+/* meniu cu 6 linkuri (Despre noi) — pe un singur rând pe desktop */
+@media screen and (min-width: 992px) {
+  .s24-nav-in > .s24-links { flex-wrap: nowrap; gap: 8px 22px; }
+  .s24-nav-in > .s24-btn { white-space: nowrap; flex-shrink: 0; }
+}
+@media screen and (min-width: 992px) and (max-width: 1279px) {
+  .s24-nav-in { padding-left: 24px; padding-right: 24px; gap: 16px; }
+  .s24-nav-in > .s24-links { gap: 8px 12px; }
+  .s24-nav-in > .s24-links .s24-link { font-size: 14.5px; padding: 10px 4px; letter-spacing: 0; }
+  .s24-nav-in > .s24-logo-img { width: 210px; flex-shrink: 0; }
+  .s24-nav-in > .s24-btn { padding-left: 18px; padding-right: 18px; }
+}
+@media screen and (min-width: 768px) and (max-width: 991px) {
+  .s24-nav-in > .s24-links { column-gap: 14px; }
+  .s24-nav-in > .s24-links .s24-link { font-size: 15px; padding: 8px 2px; }
+}
+@media screen and (min-width: 992px) and (max-width: 1199px) {
+  .s24-nav-in { gap: 10px; }
+  .s24-nav-in > .s24-logo-img { width: 180px !important; }
+  .s24-nav-in > .s24-logo-img svg, .s24-nav-in > .s24-logo-img img { width: 100% !important; height: auto !important; }
+  .s24-nav-in > .s24-links { gap: 8px 6px; }
+  .s24-nav-in > .s24-links .s24-link { font-size: 14px; }
+  .s24-nav-in > .s24-btn { padding-left: 14px; padding-right: 14px; font-size: 15px; }
+}
