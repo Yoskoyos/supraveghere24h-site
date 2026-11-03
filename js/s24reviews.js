@@ -28,9 +28,21 @@
   function run() {
     var secs = document.querySelectorAll('.s24-reviews'); if (!secs.length || !window.fetch) return;
     fetch(API, { cache: 'no-cache' }).then(function (r) { return r.ok ? r.json() : null; }).then(function (d) {
-      if (!d || !d.configured || !(d.reviews || []).length) return;
+      if (!d || !d.configured) return;
       // siguranță: afișăm doar recenziile profilului nostru, niciodată ale altei firme
       if (String(d.name || '').toLowerCase().replace(/[^a-z0-9]/g, '').indexOf('supraveghere24h') < 0) return;
+      if (!(d.reviews || []).length) {
+        // Google nu dă textele (de ex. recenzii doar cu stele) → în cardul existent punem nota reală în locul stelelor decorative
+        if (!(d.count > 0)) return;
+        Array.prototype.forEach.call(secs, function (sec) {
+          var deco = sec.querySelector('.s24-wrap > div > div[aria-hidden="true"]'); if (!deco) return;
+          deco.removeAttribute('aria-hidden'); deco.style.letterSpacing = '0'; deco.style.fontSize = '16px';
+          deco.innerHTML = '<a href="' + esc(d.url || WRITE) + '" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:10px;color:#fff;text-decoration:none;flex-wrap:wrap;justify-content:center">' +
+            '<b style="font-size:28px;line-height:1">' + (+d.rating || 0).toFixed(1).replace('.', ',') + '</b>' + stars(+d.rating, 24) +
+            '<span style="color:#C9D4E0;font-size:15px">' + d.count + (d.count === 1 ? ' recenzie' : ' recenzii') + ' pe Google</span></a>';
+        });
+        return;
+      }
       var st = document.createElement('style'); st.textContent = css; document.head.appendChild(st);
       var rating = (+d.rating || 0).toFixed(1).replace('.', ',');
       Array.prototype.forEach.call(secs, function (sec) {
