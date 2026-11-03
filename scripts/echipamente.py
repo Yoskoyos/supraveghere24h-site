@@ -80,7 +80,7 @@ for f, (h, p, items) in PAGES.items():
     s = s[:i] + block(h, p, items) + s[j:]
     s = re.sub(r'<p class="s24-shop-p">[^<]*</p>', f'<p class="s24-shop-p">{INTRO}</p>', s, count=1)
     if 's24catalog.js' not in s:
-        s = s.replace('  <script src="js/s24formresult.js"', '  <script src="js/s24catalog.js?v=3" defer></script>\n  <script src="js/s24formresult.js"', 1)
-    s = s.replace('s24catalog.js?v=2', 's24catalog.js?v=3')
+        s = s.replace('  <script src="js/s24formresult.js"', '  <script src="js/s24catalog.js?v=4" defer></script>\n  <script src="js/s24formresult.js"', 1)
+    s = s.replace('s24catalog.js?v=4', 's24catalog.js?v=4')
     open(path, 'w').write(s)
 print('echipamente actualizate pe', len(PAGES), 'pagini')

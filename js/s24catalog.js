@@ -15,9 +15,16 @@
       ((x.specs || []).length ? '<ul role="list" class="s24-pd-list">' + x.specs.map(function (s) { return '<li>' + esc(s) + '</li>'; }).join('') + '</ul>' : '') +
       '<table class="s24-pd-meta"><tbody>' + meta.map(function (r) { return '<tr><td class="s24-pd-k">' + esc(r[0]) + '</td><td class="s24-pd-v">' + esc(r[1]) + '</td></tr>'; }).join('') + '</tbody></table>' +
       (x.datasheet ? '<p style="margin:0 0 14px"><a href="' + esc(x.datasheet) + '" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;font-weight:700;color:#0D1F33;text-decoration:underline;text-underline-offset:3px;min-height:44px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#F5A100" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/><path d="M12 18v-6M9 15l3 3 3-3"/></svg>Fișa tehnică (PDF)</a></p>' : '') +
-      '<a href="calculator-pret.html" class="s24-pd-cta">Calculează prețul</a>' +
+      '<a href="' + (document.getElementById('contact') ? '#contact' : 'contact.html') + '" class="s24-pd-cta" data-ofr="' + esc([x.brand, x.model || x.name].filter(Boolean).join(' ')) + '">Cere ofertă</a>' +
       '<p class="s24-pd-note">Echipamentele sunt incluse în abonamentul lunar, fără investiție inițială.</p></div></div>';
   }
+  // „Cere ofertă” → formularul de contact de pe pagină, cu produsul trecut deja în mesaj
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('[data-ofr]'); if (!a) return;
+    var m = document.getElementById('s24-msg'); if (!m) return;
+    if (!m.value.trim()) m.value = 'Bună ziua, doresc o ofertă pentru ' + a.getAttribute('data-ofr') + '.';
+    setTimeout(function () { try { m.focus({ preventScroll: true }); } catch (_) {} }, 600);
+  });
   function bindZoom(root) {
     var lb = document.getElementById('s24-lb'); if (!lb) return;
     root.querySelectorAll('.s24-pd-img').forEach(function (im) {
