@@ -12,7 +12,7 @@ BUSINESS = {
   "name": "SUPRAVEGHERE24h", "legalName": "Yca Solutions SRL", "url": SITE + "/",
   "image": OGIMG, "logo": SITE + "/og-image.jpg",
   "telephone": "+40763354355", "email": "contact@supraveghere24h.ro",
-  "address": {"@type": "PostalAddress", "streetAddress": "Str. Aviator Mircea Petre nr. 10", "addressLocality": "București",
+  "address": {"@type": "PostalAddress", "streetAddress": "Str. Aviator Mircea Petre nr. 10, Camera 1", "addressLocality": "București",
               "addressRegion": "Sector 1", "addressCountry": "RO"},
   "areaServed": [{"@type": "City", "name": "București"}, {"@type": "AdministrativeArea", "name": "Județul Ilfov"}],
   "openingHoursSpecification": [{"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], "opens": "09:00", "closes": "18:00"}],
