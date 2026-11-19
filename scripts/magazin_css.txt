@@ -149,3 +149,4 @@ html.s24x-lock { overflow: hidden; }
   .s24x-drawer { max-width: none; }
 }
 @media (prefers-reduced-motion: reduce) { .s24x-card, .s24x-media img, .s24x-dlg, .s24x-drawer, .s24x-ov { transition: none !important; } .s24-bump, .s24x-added { animation: none !important; } }
+@media screen and (max-width: 767px) { html[data-shop="on"] .s24-side { display: none !important; } }
