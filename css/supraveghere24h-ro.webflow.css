@@ -2246,3 +2246,57 @@
   .s24-nav-in > .s24-links .s24-link { animation: none !important; opacity: 1 !important; transform: none !important; }
   .s24-ind { transition: none !important; } .s24-nav-in > .s24-btn::before { animation: none !important; display: none; }
 }
+
+/* s24-hdr2: antet — bara de încredere, meniu „Servicii”, telefon, antet lipit sus la derulare */
+html { scroll-padding-top: 96px; }
+.s24-header { position: sticky; top: 0; z-index: 900; }
+.s24-header .s24-nav { transition: box-shadow .25s ease, background-color .25s ease; }
+.s24-header.s24-scrolled .s24-nav { box-shadow: 0 8px 26px rgba(13,31,51,.10); background-color: rgba(255,255,255,.96); backdrop-filter: saturate(1.4) blur(8px); -webkit-backdrop-filter: saturate(1.4) blur(8px); }
+.s24-nav-in { transition: padding .25s ease; }
+.s24-header.s24-scrolled .s24-nav-in { padding-top: 12px; padding-bottom: 12px; }
+.s24-top-in { align-items: center; gap: 16px; font-size: 13.5px; }
+.s24-tbar { display: inline-flex; align-items: center; gap: 22px; flex-wrap: wrap; }
+.s24-ti { display: inline-flex; align-items: center; gap: 7px; color: #DCE5EF; font-weight: 600; text-decoration: none; white-space: nowrap; }
+.s24-ti svg { width: 15px; height: 15px; fill: none; stroke: #F5A100; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+a.s24-ti:hover { color: #fff; }
+.s24-ti .s24-stars { color: #F5A100; letter-spacing: 1px; }
+.s24-live { position: relative; width: 8px; height: 8px; border-radius: 50%; background: #22C55E; display: inline-block; }
+.s24-live::after { content: ""; position: absolute; inset: -4px; border-radius: 50%; border: 2px solid #22C55E; opacity: 0; animation: s24Pulse 2s ease-out infinite; }
+@keyframes s24Pulse { 0% { transform: scale(.5); opacity: .9; } 100% { transform: scale(1.6); opacity: 0; } }
+.s24-tr { color: #B9C6D6; white-space: nowrap; }
+.s24-tr a { color: #fff; text-decoration: none; }
+@media screen and (max-width: 1100px) { .s24-tmail { display: none; } .s24-tr { font-size: 13px; } }
+@media screen and (max-width: 991px) { .s24-tr { display: none; } .s24-top-in { justify-content: center; } }
+/* Servicii ▾ */
+.s24-dd { position: relative; display: inline-flex; }
+.s24-chev { width: 15px; height: 15px; margin-left: 4px; vertical-align: -2px; fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; transition: transform .25s ease; }
+.s24-dd-m { position: absolute; top: calc(100% + 10px); left: 50%; min-width: 320px; background: #fff; border: 1px solid #E1E6EC; border-radius: 16px; padding: 8px; box-shadow: 0 22px 48px rgba(13,31,51,.16);
+  opacity: 0; visibility: hidden; transform: translate(-50%, 8px); transition: opacity .2s ease, transform .2s ease, visibility .2s; z-index: 50; }
+.s24-dd-m::before { content: ""; position: absolute; top: -12px; left: 0; right: 0; height: 12px; }
+.s24-dd:hover .s24-dd-m, .s24-dd:focus-within .s24-dd-m, .s24-dd.s24-dd-open .s24-dd-m { opacity: 1; visibility: visible; transform: translate(-50%, 0); }
+.s24-dd:hover .s24-chev, .s24-dd.s24-dd-open .s24-chev { transform: rotate(180deg); }
+.s24-dd-i { display: block; padding: 12px 14px; border-radius: 12px; text-decoration: none; transition: background-color .15s ease; }
+.s24-dd-i b { display: block; color: #0D1F33; font-family: Manrope, Segoe UI, Arial, sans-serif; font-size: 15px; font-weight: 700; }
+.s24-dd-i span { display: block; color: #6B7785; font-size: 13.5px; margin-top: 2px; }
+.s24-dd-i:hover, .s24-dd-i:focus-visible, .s24-dd-i.on { background: #FFF6E0; }
+/* telefonul de lângă „Cere ofertă” */
+.s24-navtel { display: inline-flex; align-items: center; gap: 10px; color: #0D1F33; text-decoration: none; flex-shrink: 0; }
+.s24-navtel svg { width: 20px; height: 20px; padding: 10px; box-sizing: content-box; border-radius: 50%; background: #EAF4FB; fill: none; stroke: #1B7AB3; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; transition: transform .2s ease, background-color .2s ease; }
+.s24-navtel:hover svg { transform: rotate(-12deg) scale(1.06); background: #D9ECF8; }
+.s24-navtel span { display: flex; flex-direction: column; line-height: 1.15; }
+.s24-navtel small { color: #6B7785; font-size: 12px; font-weight: 600; }
+.s24-navtel b { font-family: Manrope, Segoe UI, Arial, sans-serif; font-size: 16px; font-weight: 800; white-space: nowrap; }
+@media screen and (min-width: 992px) and (max-width: 1279px) { .s24-navtel span { display: none; } }
+@media screen and (max-width: 991px) { .s24-navtel { display: none; } }
+/* telefon (meniul cu 3 liniuțe): Servicii devine listă simplă */
+@media screen and (max-width: 767px) {
+  .s24-nav-in > .s24-links.s24-open .s24-dd { display: contents; }
+  .s24-nav-in > .s24-links.s24-open .s24-dd-t { display: none !important; }
+  .s24-nav-in > .s24-links.s24-open .s24-dd-m { display: contents; visibility: visible; opacity: 1; transform: none; }
+  .s24-nav-in > .s24-links.s24-open .s24-dd-i { padding: 12px 4px; border-radius: 0; border-bottom: 1px solid #F0F3F6; }
+  .s24-nav-in > .s24-links.s24-open .s24-dd-i span { display: none; }
+  .s24-nav-in > .s24-links.s24-open .s24-dd-i b { font-size: 17px; font-weight: 600; }
+  .s24-nav-in > .s24-links.s24-open .s24-dd-i.on { background: none; }
+  .s24-header.s24-scrolled .s24-nav-in { padding-top: 10px; padding-bottom: 10px; }
+}
+@media (prefers-reduced-motion: reduce) { .s24-live::after { animation: none; } .s24-dd-m, .s24-chev, .s24-nav-in, .s24-navtel svg { transition: none !important; } }
