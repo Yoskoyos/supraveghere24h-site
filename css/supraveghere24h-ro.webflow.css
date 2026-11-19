@@ -2343,7 +2343,7 @@ a.s24-ti:hover { color: #fff; }
 .s24x-price small { font-size: 14px; font-weight: 700; color: #52606F; }
 .s24x-price-l { font-size: 32px; }
 .s24x-ask { font: 700 16px/1.2 Manrope, Segoe UI, Arial, sans-serif; color: #0D1F33; }
-.s24x-av { display: inline-flex; align-items: center; gap: 6px; margin-top: 5px; font-size: 12.5px; font-weight: 600; color: #6B7785; }
+.s24x-av { display: inline-flex; align-items: center; gap: 6px; margin-top: 5px; font-size: 12.5px; font-weight: 600; color: #6B7785; white-space: nowrap; }
 .s24x-av::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
 .s24x-av.ok { color: #15803D; } .s24x-av.soon { color: #1B7AB3; }
 .s24x-add { display: inline-flex; align-items: center; justify-content: center; gap: 8px; border: 0; border-radius: 12px; background: #F5A100; color: #0D1F33; font: 800 14.5px/1 Manrope, Segoe UI, Arial, sans-serif; padding: 0 16px; min-height: 44px; cursor: pointer; text-decoration: none; white-space: nowrap; transition: background-color .15s ease, transform .15s ease; }

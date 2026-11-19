@@ -48,7 +48,7 @@ RET = ('  <section class="s24-base s24-pol">\n    <div class="s24-pol-w">\n     
  + H('1. Confirmarea comenzii')
  + P('După ce trimiți comanda primești un e-mail cu produsele și totalul. Te sunăm în zilele lucrătoare ca să confirmăm disponibilitatea și livrarea. Dacă un produs nu mai este disponibil sau prețul afișat a fost evident greșit, îți spunem înainte de expediere și poți renunța la comandă fără niciun cost.')
  + H('2. Livrarea')
- + P('<strong>Prin curier</strong>, la adresa indicată în comandă. Costul transportului este afișat în coș înainte să trimiți comanda (și poate fi gratuit peste un anumit total). Expediem de regulă în 1–2 zile lucrătoare de la confirmare pentru produsele „În stoc” și în 2–4 zile lucrătoare pentru cele marcate „Disponibil în 2–4 zile”; pentru produsele „La comandă” îți comunicăm termenul la telefon. Curierul livrează de obicei în 1–3 zile lucrătoare de la expediere.')
+ + P('<strong>Prin curier</strong>, la adresa indicată în comandă. Costul transportului este afișat în coș înainte să trimiți comanda (și poate fi gratuit peste un anumit total). Expediem de regulă în 1–2 zile lucrătoare de la confirmare pentru produsele „În stoc” și în 2–4 zile lucrătoare pentru cele marcate „Livrare în 2–4 zile”; pentru produsele „La comandă” îți comunicăm termenul la telefon. Curierul livrează de obicei în 1–3 zile lucrătoare de la expediere.')
  + P('<strong>Ridicare personală</strong> din sediul nostru din București, Sector 1, după ce te sunăm și stabilim ora. Ridicarea este gratuită.')
  + P('La primire, verifică aspectul coletului în prezența curierului. Dacă ambalajul este deteriorat, poți refuza coletul sau poți întocmi un proces-verbal împreună cu curierul și ne anunți în aceeași zi.')
  + H('3. Plata și factura')
