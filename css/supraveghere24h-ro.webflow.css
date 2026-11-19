@@ -2219,3 +2219,30 @@
 }
 .s24-reviews { background-image: linear-gradient(rgba(13,31,51,.9), rgba(13,31,51,.84)), url("../images/hero-camere-1600.jpg") !important; background-size: cover !important; background-position: center 40% !important; }
 @media screen and (max-width: 767px) { .s24-reviews { background-image: linear-gradient(rgba(13,31,51,.78), rgba(13,31,51,.9)), url("../images/hero-camere-900.jpg") !important; } }
+
+/* s24-navfx: meniu de sus „profi” — pastilă care alunecă, intrare animată, buton cu reflex (doar desktop) */
+@media screen and (min-width: 992px) {
+  .s24-nav-in > .s24-links { position: relative; gap: 4px 6px !important; }
+  .s24-nav-in > .s24-links .s24-link { position: relative; z-index: 1; padding: 10px 14px !important; border-radius: 999px; color: #3C4A59; transition: color .25s ease; }
+  .s24-nav-in > .s24-links .s24-link::after { display: none; }
+  .s24-nav-in > .s24-links .s24-link:hover, .s24-nav-in > .s24-links .s24-link:focus-visible, .s24-nav-in > .s24-links .s24-link.w--current { color: #0D1F33; }
+  .s24-ind { position: absolute; z-index: 0; top: 0; left: 0; width: 0; height: 0; border-radius: 999px; background: linear-gradient(180deg,#FFF6E0,#FFEBC2); box-shadow: inset 0 0 0 1px rgba(245,161,0,.38), 0 4px 14px rgba(245,161,0,.16); opacity: 0; pointer-events: none;
+    transition: transform .42s cubic-bezier(.22,.9,.24,1), width .42s cubic-bezier(.22,.9,.24,1), height .42s cubic-bezier(.22,.9,.24,1), opacity .25s ease; }
+  .s24-ind.on { opacity: 1; }
+  .s24-nav-in > .s24-links .s24-link { opacity: 0; transform: translateY(-8px); animation: s24NavIn .55s cubic-bezier(.22,.9,.24,1) forwards; }
+  .s24-nav-in > .s24-links .s24-link:nth-of-type(1){animation-delay:.05s}.s24-nav-in > .s24-links .s24-link:nth-of-type(2){animation-delay:.1s}
+  .s24-nav-in > .s24-links .s24-link:nth-of-type(3){animation-delay:.15s}.s24-nav-in > .s24-links .s24-link:nth-of-type(4){animation-delay:.2s}
+  .s24-nav-in > .s24-links .s24-link:nth-of-type(5){animation-delay:.25s}.s24-nav-in > .s24-links .s24-link:nth-of-type(6){animation-delay:.3s}
+  @keyframes s24NavIn { to { opacity: 1; transform: none; } }
+  .s24-nav-in > .s24-btn { position: relative; overflow: hidden; transition: transform .22s ease, box-shadow .22s ease, background-color .22s ease; box-shadow: 0 6px 18px rgba(245,161,0,.28); }
+  .s24-nav-in > .s24-btn:hover { transform: translateY(-2px); box-shadow: 0 12px 28px rgba(245,161,0,.42); }
+  .s24-nav-in > .s24-btn::before { content: ""; position: absolute; top: 0; left: -60%; width: 40%; height: 100%; background: linear-gradient(100deg, transparent, rgba(255,255,255,.55), transparent); transform: skewX(-20deg); animation: s24Shine 6s ease-in-out 1.2s infinite; pointer-events: none; }
+  @keyframes s24Shine { 0%, 78% { left: -60%; } 92%, 100% { left: 130%; } }
+}
+@media screen and (min-width: 992px) and (max-width: 1279px) {
+  .s24-nav-in > .s24-links .s24-link { padding: 9px 9px !important; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .s24-nav-in > .s24-links .s24-link { animation: none !important; opacity: 1 !important; transform: none !important; }
+  .s24-ind { transition: none !important; } .s24-nav-in > .s24-btn::before { animation: none !important; display: none; }
+}
