@@ -22,6 +22,8 @@
   };
   function esc(s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
   function lei(n) { return (Math.round(n * 100) / 100).toLocaleString('ro-RO'); }
+  function dmy(d) { var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(d || ''); return m ? (+m[3]) + ' ' + ['ian.', 'feb.', 'mar.', 'apr.', 'mai', 'iun.', 'iul.', 'aug.', 'sept.', 'oct.', 'nov.', 'dec.'][+m[2] - 1] : ''; }
+  function hasDisc(x) { return priced(x) && x.oldPrice > x.price; }
   // ── coșul (comun cu pagina cos.html și antetul) ──
   function cartGet() { try { var c = JSON.parse(localStorage.getItem('s24cart') || '[]'); return Array.isArray(c) ? c.filter(function (x) { return x && x.id && x.qty > 0; }) : []; } catch (e) { return []; } }
   function cartSet(c) { try { localStorage.setItem('s24cart', JSON.stringify(c)); } catch (e) {} try { window.dispatchEvent(new Event('s24cart')); } catch (e) {} }
@@ -43,22 +45,22 @@
     var specs = (x.specs || []).slice(0, 3);
     return '<article class="s24x-card" data-id="' + esc(x.id) + '">' +
       '<button type="button" class="s24x-media" data-open aria-label="Detalii: ' + esc(x.name) + '"><img src="' + esc(img) + '" alt="' + esc(x.name) + '" loading="lazy" width="400" height="300">' +
-      (x.brand ? '<span class="s24x-brand">' + esc(x.brand) + '</span>' : '') + '</button>' +
+      (x.brand ? '<span class="s24x-brand">' + esc(x.brand) + '</span>' : '') + (hasDisc(x) ? '<span class="s24x-off">-' + x.disc + '%</span>' : '') + '</button>' +
       '<div class="s24x-body"><div class="s24x-cat">' + esc(CAT[x.cat] || '') + '</div>' +
       '<h3 class="s24x-name"><button type="button" data-open>' + esc(x.name) + '</button></h3>' +
       (x.model ? '<div class="s24x-sku">Cod: ' + esc(x.model) + '</div>' : '') +
       (specs.length ? '<ul class="s24x-spec">' + specs.map(function (s) { return '<li>' + esc(s) + '</li>'; }).join('') + '</ul>' : '') +
       '<div class="s24x-foot">' + (priced(x)
-        ? '<div class="s24x-pr"><div class="s24x-price">' + lei(x.price) + '<small> lei</small></div>' + (av ? '<span class="s24x-av ' + av[1] + '">' + av[0] + '</span>' : '') + '</div>' +
+        ? '<div class="s24x-pr">' + (hasDisc(x) ? '<s class="s24x-old">' + lei(x.oldPrice) + ' lei</s>' : '') + '<div class="s24x-price' + (hasDisc(x) ? ' s24x-red' : '') + '">' + lei(x.price) + '<small> lei</small></div>' + (av ? '<span class="s24x-av ' + av[1] + '">' + av[0] + '</span>' : '') + '</div>' +
           '<button type="button" class="s24x-add" data-add aria-label="Adaugă în coș: ' + esc(x.name) + '">' + I.cart + '<span>Adaugă</span></button>'
         : '<div class="s24x-pr"><div class="s24x-ask">Preț la cerere</div><span class="s24x-av ord">Inclus și în abonament</span></div>' +
           '<a href="' + (document.getElementById('contact') ? '#contact' : 'contact.html') + '" class="s24x-add s24x-add-o" data-ofr="' + esc([x.brand, x.model || x.name].filter(Boolean).join(' ')) + '">Cere ofertă</a>') +
       '</div></div></article>';
   }
   function visible() {
-    var g = GROUPS.filter(function (r) { return r[0] === state.g; })[0], q = state.q.toLowerCase().trim();
+    var g = state.g === 'off' ? null : GROUPS.filter(function (r) { return r[0] === state.g; })[0], q = state.q.toLowerCase().trim();
     var L = ALL.filter(function (x) {
-      if (g && g[2].indexOf(x.cat) < 0) return false;
+      if (state.g === 'off') { if (!hasDisc(x)) return false; } else if (g && g[2].indexOf(x.cat) < 0) return false;
       if (q && (x.name + ' ' + x.brand + ' ' + x.model + ' ' + (x.specs || []).join(' ')).toLowerCase().indexOf(q) < 0) return false;
       return true;
     });
@@ -74,6 +76,8 @@
   }
   function build(title) {
     var present = GROUPS.filter(function (g) { return ALL.some(function (x) { return g[2].indexOf(x.cat) >= 0; }); });
+    var nDisc = ALL.filter(hasDisc).length;
+    if (nDisc) present = [['off', 'Reduceri', []]].concat(present);
     var chips = present.length > 1 ? '<div class="s24x-chips" role="group" aria-label="Filtrează după categorie"><button type="button" class="s24x-chip" data-g="" aria-pressed="true">Toate</button>' +
       present.map(function (g) { return '<button type="button" class="s24x-chip" data-g="' + g[0] + '" aria-pressed="false">' + g[1] + '</button>'; }).join('') + '</div>' : '';
     box.classList.add('s24x');
@@ -86,7 +90,7 @@
       '<div class="s24x-tools">' + chips + '<div class="s24x-tr"><label class="s24x-search">' + I.search + '<input type="search" placeholder="Caută model, rezoluție…" aria-label="Caută în echipamente" autocomplete="off"></label>' +
       '<select class="s24x-sort" aria-label="Ordonează">' + '<option value="rec">Recomandate</option>' + (SHOP.on ? '<option value="pa">Preț crescător</option><option value="pd">Preț descrescător</option>' : '') + '<option value="nm">Nume (A–Z)</option></select></div></div>' +
       '<div class="s24x-grid"></div>' +
-      (SHOP.on ? '<p class="s24x-legal">Prețuri finale în lei. YCA SOLUTIONS S.R.L. nu este plătitoare de TVA. Pentru blocuri, aceleași echipamente sunt incluse în <a href="oferta-asociatii.html">abonamentul lunar</a>, cu montaj și mentenanță.</p>'
+      (SHOP.on ? '<p class="s24x-legal">Prețuri finale în lei. YCA SOLUTIONS S.R.L. nu este plătitoare de TVA. Prețul tăiat este cel mai mic preț practicat pe site în cele 30 de zile dinaintea reducerii. Pentru blocuri, aceleași echipamente sunt incluse în <a href="oferta-asociatii.html">abonamentul lunar</a>, cu montaj și mentenanță.</p>'
         : '<p class="s24x-legal">Pentru blocuri, echipamentele sunt incluse în <a href="oferta-asociatii.html">abonamentul lunar</a>, fără investiție inițială. Pentru firme și case facem ofertă personalizată.</p>');
     box.addEventListener('click', function (e) {
       var c = e.target.closest('.s24x-chip'); if (c) { state.g = c.getAttribute('data-g'); renderGrid(); return; }
@@ -134,7 +138,7 @@
     pm.querySelector('.s24x-pm-in').innerHTML = '<div class="s24x-pm-img"><img src="' + esc(img) + '" alt="' + esc(x.name) + '"></div><div class="s24x-pm-txt">' +
       '<div class="s24x-cat">' + esc([x.brand, CAT[x.cat]].filter(Boolean).join(' · ')) + '</div><h2 id="s24x-pm-h">' + esc(x.name) + '</h2>' + (x.model ? '<div class="s24x-sku">Cod produs: ' + esc(x.model) + '</div>' : '') +
       (x.tagline ? '<p class="s24x-tag">' + esc(x.tagline) + '</p>' : '') +
-      (priced(x) ? '<div class="s24x-pm-buy"><div><div class="s24x-price s24x-price-l">' + lei(x.price) + '<small> lei</small></div>' + (av ? '<span class="s24x-av ' + av[1] + '">' + av[0] + '</span>' : '') + '</div>' +
+      (priced(x) ? '<div class="s24x-pm-buy"><div>' + (hasDisc(x) ? '<div class="s24x-pmd"><s class="s24x-old">' + lei(x.oldPrice) + ' lei</s><span class="s24x-offi">-' + x.disc + '%</span>' + (x.discUntil ? '<span class="s24x-until">până la ' + dmy(x.discUntil) + '</span>' : '') + '</div>' : '') + '<div class="s24x-price s24x-price-l' + (hasDisc(x) ? ' s24x-red' : '') + '">' + lei(x.price) + '<small> lei</small></div>' + (av ? '<span class="s24x-av ' + av[1] + '">' + av[0] + '</span>' : '') + '</div>' +
         '<div class="s24x-pm-act"><div class="s24x-qty"><button type="button" data-q="-1" aria-label="Mai puține">−</button><input type="number" value="1" min="1" max="99" inputmode="numeric" aria-label="Cantitate"><button type="button" data-q="1" aria-label="Mai multe">+</button></div>' +
         '<button type="button" class="s24x-add s24x-add-l" data-padd="' + esc(x.id) + '">' + I.cart + '<span>Adaugă în coș</span></button></div></div>'
         : '<div class="s24x-pm-buy"><div><div class="s24x-ask">Preț la cerere</div></div><a href="' + (document.getElementById('contact') ? '#contact' : 'contact.html') + '" class="s24x-add s24x-add-l" data-ofr="' + esc([x.brand, x.model || x.name].filter(Boolean).join(' ')) + '">Cere ofertă</a></div>') +

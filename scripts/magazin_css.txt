@@ -150,3 +150,14 @@ html.s24x-lock { overflow: hidden; }
 }
 @media (prefers-reduced-motion: reduce) { .s24x-card, .s24x-media img, .s24x-dlg, .s24x-drawer, .s24x-ov { transition: none !important; } .s24-bump, .s24x-added { animation: none !important; } }
 @media screen and (max-width: 767px) { html[data-shop="on"] .s24-side { display: none !important; } }
+
+/* reduceri */
+.s24x-off { position: absolute; top: 10px; right: 10px; background: #E5484D; color: #fff; font: 800 13px/1 Manrope, Segoe UI, Arial, sans-serif; padding: 7px 9px; border-radius: 999px; box-shadow: 0 4px 12px rgba(229,72,77,.35); }
+.s24x-old { display: block; color: #8A96A3; font-size: 13.5px; font-weight: 600; text-decoration-thickness: 1.5px; }
+.s24x-red { color: #C2262C; }
+.s24x-pmd { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 2px; }
+.s24x-pmd .s24x-old { display: inline; font-size: 16px; }
+.s24x-offi { background: #E5484D; color: #fff; font: 800 13px/1 Manrope, Segoe UI, Arial, sans-serif; padding: 5px 8px; border-radius: 999px; }
+.s24x-until { color: #C2262C; font-size: 13px; font-weight: 700; }
+.s24x-chip[data-g="off"] { border-color: #F7C2C4; color: #C2262C; }
+.s24x-chip[data-g="off"][aria-pressed="true"] { background: #E5484D; border-color: #E5484D; color: #fff; }
