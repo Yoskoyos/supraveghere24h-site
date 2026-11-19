@@ -55,3 +55,22 @@
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
 })();
+/* Coșul din antet: apare când ai ceva în coș sau pe paginile magazinului (cu magazinul pornit) */
+(function () {
+  var SVG = '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M2 3h3l2.7 12.4a2 2 0 0 0 2 1.6h8.6a2 2 0 0 0 2-1.5L22 7H6"/></svg>';
+  function count() { try { return (JSON.parse(localStorage.getItem('s24cart') || '[]') || []).reduce(function (t, x) { return t + (x && x.qty > 0 ? +x.qty : 0); }, 0); } catch (e) { return 0; } }
+  function mk(cls) { var a = document.createElement('a'); a.href = 'cos.html'; a.className = cls; a.hidden = true; a.innerHTML = SVG + '<i class="s24-cartn"></i>';
+    a.addEventListener('click', function (e) { if (window.s24openCart) { e.preventDefault(); window.s24openCart(); } }); return a; }
+  var d, m;
+  function upd() {
+    var n = count(), on = n > 0 || document.documentElement.getAttribute('data-shop') === 'on' || /\/cos(\.html)?$/.test(location.pathname);
+    var nav = document.querySelector('.s24-nav-in'); if (!nav) return;
+    if (!d) { d = mk('s24-cartbtn'); var t = nav.querySelector('.s24-navtel') || nav.querySelector('.s24-nav-in > .s24-btn'); nav.insertBefore(d, t || null); }
+    var mob = nav.querySelector('.s24-mob'); if (mob && !m) { m = mk('s24-cartbtn s24-cartbtn-m'); mob.insertBefore(m, mob.firstChild); }
+    [d, m].forEach(function (a) { if (!a) return; a.hidden = !on; a.querySelector('.s24-cartn').textContent = n || ''; a.querySelector('.s24-cartn').hidden = !n; a.setAttribute('aria-label', n ? 'Coșul tău: ' + n + ' produse' : 'Coșul tău'); });
+  }
+  window.addEventListener('s24cart', function () { upd(); [d, m].forEach(function (a) { if (a && !a.hidden) { a.classList.remove('s24-bump'); a.offsetWidth; a.classList.add('s24-bump'); } }); });
+  window.addEventListener('storage', function (e) { if (e.key === 's24cart') upd(); });
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', upd); else upd();
+  window.addEventListener('load', upd);
+})();
