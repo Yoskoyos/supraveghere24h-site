@@ -7,7 +7,7 @@
   var CAT = { exterior: 'Cameră exterior', interior: 'Cameră interior', lift: 'Cameră lift', nvr: 'Recorder (NVR)', hdd: 'Hard disk', rack: 'Rack și protecție', retea: 'Rețea și alimentare', altele: 'Accesorii' };
   var GROUPS = [['ext', 'Camere exterior', ['exterior']], ['int', 'Camere interior', ['interior', 'lift']], ['nvr', 'NVR', ['nvr']], ['hdd', 'Hard disk', ['hdd']], ['net', 'Rețea', ['retea']], ['acc', 'Accesorii', ['rack', 'altele']]];
   var FALLBACK = { exterior: 'images/cam-hilook-bullet.svg', interior: 'images/cam-hilook-turret.svg', lift: 'images/cam-hilook-turret.svg' };
-  var AV = { stoc: ['În stoc', 'ok'], furnizor: ['Livrare în 2–4 zile', 'soon'], comanda: ['La comandă', 'ord'] };
+  var AV = { stoc: ['În stoc', 'ok'], furnizor: ['Livrare în 1–3 zile', 'soon'], comanda: ['La comandă', 'ord'] };
   var I = {
     cart: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M2 3h3l2.7 12.4a2 2 0 0 0 2 1.6h8.6a2 2 0 0 0 2-1.5L22 7H6"/></svg>',
     search: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>',
