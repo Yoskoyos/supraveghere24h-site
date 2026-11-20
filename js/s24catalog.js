@@ -4,8 +4,14 @@
    Coșul stă în localStorage („s24cart”: [{id, qty}]); prețurile se recitesc mereu de pe server. */
 (function () {
   var API = 'https://proxy.supraveghere24h.ro/public/catalog';
-  var CAT = { exterior: 'Cameră exterior', interior: 'Cameră interior', lift: 'Cameră lift', nvr: 'Recorder (NVR)', hdd: 'Hard disk', rack: 'Rack și protecție', retea: 'Rețea și alimentare', altele: 'Accesorii' };
-  var GROUPS = [['ext', 'Camere exterior', ['exterior']], ['int', 'Camere interior', ['interior', 'lift']], ['nvr', 'NVR', ['nvr']], ['hdd', 'Hard disk', ['hdd']], ['net', 'Rețea', ['retea']], ['acc', 'Accesorii', ['rack', 'altele']]];
+  var CAT = { exterior: 'Cameră exterior', interior: 'Cameră interior', lift: 'Cameră lift', nvr: 'Înregistrator (NVR)', hdd: 'Stocare', retea: 'Rețea', alimentare: 'Alimentare', rack: 'Montaj și accesorii', monitor: 'Monitor', altele: 'Accesorii' };
+  // categoriile mari (filtre) și tipurile din fiecare (al doilea rând de filtre)
+  var GROUPS = [['cam', 'Camere', ['exterior', 'interior', 'lift']], ['nvr', 'NVR', ['nvr']], ['hdd', 'Stocare', ['hdd']], ['net', 'Rețea', ['retea']], ['pwr', 'Alimentare', ['alimentare']], ['acc', 'Montaj și accesorii', ['rack', 'altele']], ['mon', 'Monitoare', ['monitor']]];
+  var SUBS = { cam: [['p:exterior', 'Exterior'], ['p:interior', 'Interior'], ['bullet', 'Bullet'], ['dome', 'Dome / turret'], ['ptz', 'Rotative'], ['wifi', 'Wi-Fi'], ['kit', 'Kituri']],
+    hdd: [['hdd', 'Hard disk'], ['microsd', 'Card microSD']], net: [['switch', 'Switch PoE'], ['router', 'Router']], pwr: [['sursa', 'Surse'], ['alimentator', 'Alimentatoare'], ['ups', 'UPS']],
+    acc: [['doza', 'Doze'], ['rack', 'Rack'], ['cablu', 'Cablu'], ['accesorii', 'Accesorii de montaj']] };
+  var SUBN = { bullet: 'Cameră bullet', dome: 'Cameră dome / turret', ptz: 'Cameră rotativă', wifi: 'Cameră Wi-Fi', kit: 'Kit supraveghere', hdd: 'Hard disk', microsd: 'Card microSD', switch: 'Switch PoE', router: 'Router', sursa: 'Sursă de alimentare', alimentator: 'Alimentator', ups: 'UPS', doza: 'Doză de joncțiune', rack: 'Rack', cablu: 'Cablu', accesorii: 'Accesorii de montaj' };
+  function catName(x) { var c = ['exterior', 'interior', 'lift'].indexOf(x.cat) >= 0; return SUBN[x.sub] ? SUBN[x.sub] + (c && x.sub !== 'kit' ? ' · ' + (x.cat === 'lift' ? 'lift' : x.cat) : '') : (CAT[x.cat] || ''); }
   var FALLBACK = { exterior: 'images/cam-hilook-bullet.svg', interior: 'images/cam-hilook-turret.svg', lift: 'images/cam-hilook-turret.svg' };
   var AV = { stoc: ['În stoc', 'ok'], furnizor: ['Livrare în 1–3 zile', 'soon'], comanda: ['La comandă', 'ord'] };
   var I = {
@@ -29,7 +35,7 @@
   function cartSet(c) { try { localStorage.setItem('s24cart', JSON.stringify(c)); } catch (e) {} try { window.dispatchEvent(new Event('s24cart')); } catch (e) {} }
   function cartAdd(id, q) { var c = cartGet(), x = c.filter(function (y) { return y.id === id; })[0]; if (x) x.qty = Math.min(99, x.qty + q); else c.push({ id: id, qty: Math.min(99, q) }); cartSet(c); }
 
-  var ALL = [], BYID = {}, SHOP = { on: false }, box, state = { g: '', q: '', sort: 'rec' };
+  var ALL = [], BYID = {}, SHOP = { on: false }, box, state = { g: '', s: '', q: '', sort: 'rec' };
   var priced = function (x) { return SHOP.on && x.price > 0; };
 
   // „Cere ofertă” → formularul de contact de pe pagină, cu produsul trecut în mesaj
@@ -46,7 +52,7 @@
     return '<article class="s24x-card" data-id="' + esc(x.id) + '">' +
       '<button type="button" class="s24x-media" data-open aria-label="Detalii: ' + esc(x.name) + '"><img src="' + esc(img) + '" alt="' + esc(x.name) + '" loading="lazy" width="400" height="300">' +
       (x.brand ? '<span class="s24x-brand">' + esc(x.brand) + '</span>' : '') + (hasDisc(x) ? '<span class="s24x-off">-' + x.disc + '%</span>' : '') + '</button>' +
-      '<div class="s24x-body"><div class="s24x-cat">' + esc(CAT[x.cat] || '') + '</div>' +
+      '<div class="s24x-body"><div class="s24x-cat">' + esc(catName(x)) + '</div>' +
       '<h3 class="s24x-name"><button type="button" data-open>' + esc(x.name) + '</button></h3>' +
       (x.model ? '<div class="s24x-sku">Cod: ' + esc(x.model) + '</div>' : '') +
       (specs.length ? '<ul class="s24x-spec">' + specs.map(function (s) { return '<li>' + esc(s) + '</li>'; }).join('') + '</ul>' : '') +
@@ -61,6 +67,7 @@
     var g = state.g === 'off' ? null : GROUPS.filter(function (r) { return r[0] === state.g; })[0], q = state.q.toLowerCase().trim();
     var L = ALL.filter(function (x) {
       if (state.g === 'off') { if (!hasDisc(x)) return false; } else if (g && g[2].indexOf(x.cat) < 0) return false;
+      if (state.s) { if (state.s.indexOf('p:') === 0) { if (x.cat !== state.s.slice(2) && !(state.s === 'p:interior' && x.cat === 'lift')) return false; } else if (x.sub !== state.s) return false; }
       if (q && (x.name + ' ' + x.brand + ' ' + x.model + ' ' + (x.specs || []).join(' ')).toLowerCase().indexOf(q) < 0) return false;
       return true;
     });
@@ -72,7 +79,12 @@
     var L = visible(), grid = box.querySelector('.s24x-grid');
     grid.innerHTML = L.length ? L.map(card).join('') : '<div class="s24x-none">Niciun produs nu se potrivește căutării. <button type="button" data-reset>Arată toate produsele</button></div>';
     box.querySelector('.s24x-count').textContent = L.length + (L.length === 1 ? ' produs' : ' produse');
-    [].forEach.call(box.querySelectorAll('.s24x-chip'), function (c) { c.setAttribute('aria-pressed', c.getAttribute('data-g') === state.g ? 'true' : 'false'); });
+    [].forEach.call(box.querySelectorAll('.s24x-chip[data-g]'), function (c) { c.setAttribute('aria-pressed', c.getAttribute('data-g') === state.g ? 'true' : 'false'); });
+    // al doilea rând: tipurile din categoria aleasă (doar cele care au produse)
+    var sb = box.querySelector('.s24x-subs'), grp = GROUPS.filter(function (r) { return r[0] === state.g; })[0];
+    var subs = grp && SUBS[state.g] ? SUBS[state.g].filter(function (o) { return ALL.some(function (x) { return grp[2].indexOf(x.cat) >= 0 && (o[0].indexOf('p:') === 0 ? x.cat === o[0].slice(2) || (o[0] === 'p:interior' && x.cat === 'lift') : x.sub === o[0]); }); }) : [];
+    sb.hidden = subs.length < 2;
+    sb.innerHTML = subs.length < 2 ? '' : '<button type="button" class="s24x-sub" data-s="" aria-pressed="' + (!state.s) + '">Toate</button>' + subs.map(function (o) { return '<button type="button" class="s24x-sub" data-s="' + o[0] + '" aria-pressed="' + (state.s === o[0]) + '">' + o[1] + '</button>'; }).join('');
   }
   function build(title) {
     var present = GROUPS.filter(function (g) { return ALL.some(function (x) { return g[2].indexOf(x.cat) >= 0; }); });
@@ -89,12 +101,13 @@
         '<li>' + I.back + '<span><b>Retur în 14 zile</b>pentru persoane fizice</span></li></ul>' : '') +
       '<div class="s24x-tools">' + chips + '<div class="s24x-tr"><label class="s24x-search">' + I.search + '<input type="search" placeholder="Caută model, rezoluție…" aria-label="Caută în echipamente" autocomplete="off"></label>' +
       '<select class="s24x-sort" aria-label="Ordonează">' + '<option value="rec">Recomandate</option>' + (SHOP.on ? '<option value="pa">Preț crescător</option><option value="pd">Preț descrescător</option>' : '') + '<option value="nm">Nume (A–Z)</option></select></div></div>' +
-      '<div class="s24x-grid"></div>' +
+      '<div class="s24x-subs" role="group" aria-label="Filtrează după tip" hidden></div><div class="s24x-grid"></div>' +
       (SHOP.on ? '<p class="s24x-legal">Prețuri finale în lei. YCA SOLUTIONS S.R.L. nu este plătitoare de TVA. Prețul tăiat este cel mai mic preț practicat pe site în cele 30 de zile dinaintea reducerii. Pentru blocuri, aceleași echipamente sunt incluse în <a href="oferta-asociatii.html">abonamentul lunar</a>, cu montaj și mentenanță.</p>'
         : '<p class="s24x-legal">Pentru blocuri, echipamentele sunt incluse în <a href="oferta-asociatii.html">abonamentul lunar</a>, fără investiție inițială. Pentru firme și case facem ofertă personalizată.</p>');
     box.addEventListener('click', function (e) {
-      var c = e.target.closest('.s24x-chip'); if (c) { state.g = c.getAttribute('data-g'); renderGrid(); return; }
-      if (e.target.closest('[data-reset]')) { state = { g: '', q: '', sort: state.sort }; box.querySelector('.s24x-search input').value = ''; renderGrid(); return; }
+      var c = e.target.closest('.s24x-chip'); if (c) { state.g = c.getAttribute('data-g'); state.s = ''; renderGrid(); return; }
+      var sbt = e.target.closest('.s24x-sub'); if (sbt) { state.s = sbt.getAttribute('data-s'); renderGrid(); return; }
+      if (e.target.closest('[data-reset]')) { state = { g: '', s: '', q: '', sort: state.sort }; box.querySelector('.s24x-search input').value = ''; renderGrid(); return; }
       var art = e.target.closest('.s24x-card'); if (!art) return; var x = BYID[art.getAttribute('data-id')];
       if (e.target.closest('[data-add]')) { cartAdd(x.id, 1); openCart(x); return; }
       if (e.target.closest('[data-open]')) openProduct(x);
@@ -136,7 +149,7 @@
   function openProduct(x) {
     ensureUi(); var img = x.photo || FALLBACK[x.cat] || 'images/kit-hilook-8.svg', av = AV[x.avail];
     pm.querySelector('.s24x-pm-in').innerHTML = '<div class="s24x-pm-img"><img src="' + esc(img) + '" alt="' + esc(x.name) + '"></div><div class="s24x-pm-txt">' +
-      '<div class="s24x-cat">' + esc([x.brand, CAT[x.cat]].filter(Boolean).join(' · ')) + '</div><h2 id="s24x-pm-h">' + esc(x.name) + '</h2>' + (x.model ? '<div class="s24x-sku">Cod produs: ' + esc(x.model) + '</div>' : '') +
+      '<div class="s24x-cat">' + esc([x.brand, catName(x)].filter(Boolean).join(' · ')) + '</div><h2 id="s24x-pm-h">' + esc(x.name) + '</h2>' + (x.model ? '<div class="s24x-sku">Cod produs: ' + esc(x.model) + '</div>' : '') +
       (x.tagline ? '<p class="s24x-tag">' + esc(x.tagline) + '</p>' : '') +
       (priced(x) ? '<div class="s24x-pm-buy"><div>' + (hasDisc(x) ? '<div class="s24x-pmd"><s class="s24x-old">' + lei(x.oldPrice) + ' lei</s><span class="s24x-offi">-' + x.disc + '%</span>' + (x.discUntil ? '<span class="s24x-until">până la ' + dmy(x.discUntil) + '</span>' : '') + '</div>' : '') + '<div class="s24x-price s24x-price-l' + (hasDisc(x) ? ' s24x-red' : '') + '">' + lei(x.price) + '<small> lei</small></div>' + (av ? '<span class="s24x-av ' + av[1] + '">' + av[0] + '</span>' : '') + '</div>' +
         '<div class="s24x-pm-act"><div class="s24x-qty"><button type="button" data-q="-1" aria-label="Mai puține">−</button><input type="number" value="1" min="1" max="99" inputmode="numeric" aria-label="Cantitate"><button type="button" data-q="1" aria-label="Mai multe">+</button></div>' +

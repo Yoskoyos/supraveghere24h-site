@@ -2546,3 +2546,11 @@ html.s24x-lock { overflow: hidden; }
 .s24x-until { color: #C2262C; font-size: 13px; font-weight: 700; }
 .s24x-chip[data-g="off"] { border-color: #F7C2C4; color: #C2262C; }
 .s24x-chip[data-g="off"][aria-pressed="true"] { background: #E5484D; border-color: #E5484D; color: #fff; }
+
+/* subcategorii */
+.s24x-subs { display: flex; gap: 6px; flex-wrap: wrap; margin: -6px 0 16px; padding: 10px 12px; background: #F5F7FA; border-radius: 12px; }
+.s24x-subs[hidden] { display: none; }
+.s24x-sub { border: 0; background: transparent; color: #3D4F63; border-radius: 999px; padding: 7px 13px; font: 600 13.5px/1 Montserrat, Segoe UI, Arial, sans-serif; cursor: pointer; min-height: 34px; }
+.s24x-sub:hover { background: #fff; color: #0D1F33; }
+.s24x-sub[aria-pressed="true"] { background: #fff; color: #0D1F33; box-shadow: 0 1px 4px rgba(13,31,51,.12); outline: 1.5px solid #F5A100; }
+@media screen and (max-width: 767px) { .s24x-subs { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; } .s24x-sub { flex-shrink: 0; } }

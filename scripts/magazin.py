@@ -123,7 +123,7 @@ for f in sorted(glob.glob('*.html')):
         s = s.replace('<a href="termeni-si-conditii.html" class="s24-flink">Termeni și condiții</a><span class="s24-fsep">·</span>',
                       '<a href="termeni-si-conditii.html" class="s24-flink">Termeni și condiții</a><span class="s24-fsep">·</span>\n          ' + LNK, 1)
     s = re.sub(r'js/s24navfx\.js\?v=\d+', 'js/s24navfx.js?v=3', s)
-    s = re.sub(r'js/s24catalog\.js\?v=\d+', 'js/s24catalog.js?v=5', s)
+    s = re.sub(r'js/s24catalog\.js\?v=\d+', 'js/s24catalog.js?v=6', s)
     if f in SHOPP:
         s = s.replace('<p class="s24-shop-p">Camerele IP pe care le montăm: HiLook, Hikvision și Dahua, cu iluminare duală și microfon. Echipamentele sunt incluse în abonament, fără investiție inițială.',
                       '<p class="s24-shop-p">Camere IP, NVR-uri, hard disk-uri și accesorii HiLook, Hikvision și Dahua — aceleași echipamente pe care le montăm noi. Pentru blocuri, sunt incluse în abonament, fără investiție inițială.', 1)
