@@ -1,9 +1,9 @@
 # „Monitor live” de pe prima pagină cu filmări reale (Pexels, licență liberă pentru uz comercial, fără atribuire obligatorie;
 # prelucrate: tăiate, 480×300, 15 cadre/s, culori atenuate, zgomot de cameră). Înlocuiește desenele SVG din animatii.py.
 # Re-rulabil: python3 scripts/monitor_video.py (animatii.py folosește și el MONITOR de aici).
-# Surse: pexels.com/video/7702046 (scară), 9100884 (parcare subterană), 34779661 (lift), 40163470 (stradă noaptea).
+# Surse: pexels.com/video/7702046 (scară), 9100884 (parcare subterană), 31635332 (parcare bloc), 40163470 (stradă noaptea).
 import os
-CAMS = [('CAM 1 · SCARĂ', 'cam1-scara'), ('CAM 2 · PARCARE', 'cam2-parcare'), ('CAM 3 · LIFT', 'cam3-lift'), ('CAM 4 · EXTERIOR', 'cam4-exterior')]
+CAMS = [('CAM 1 · SCARĂ', 'cam1-scara'), ('CAM 2 · PARCARE SUBTERANĂ', 'cam2-parcare'), ('CAM 3 · PARCARE BLOC', 'cam3-parcare'), ('CAM 4 · EXTERIOR', 'cam4-exterior')]
 def tile(label, f):
     return (f'<div class="s24m-t"><video class="s24m-v" src="images/cctv/{f}.mp4" poster="images/cctv/{f}.jpg" muted loop playsinline autoplay preload="metadata" '
             f'disablepictureinpicture tabindex="-1"></video><span class="s24m-l">{label}</span><span class="s24m-r"><i></i>REC</span><span class="s24m-ts"></span></div>')
