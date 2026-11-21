@@ -179,6 +179,9 @@ SC_INTRARE = '''<svg viewBox="0 0 160 100" preserveAspectRatio="xMidYMid slice">
 MONITOR = ('<!-- s24-mon --><div class="s24m" aria-hidden="true"><div class="s24m-top"><span class="s24m-live"><i></i>LIVE</span><span>Monitorizare bloc · 4 camere</span><span class="s24m-clock"></span></div>'
            '<div class="s24m-grid">' + TILE('CAM 1 · SCARĂ', SC_SCARA) + TILE('CAM 2 · PARCARE', SC_PARCARE) + TILE('CAM 3 · LIFT', SC_LIFT) + TILE('CAM 4 · INTRARE', SC_INTRARE) + '</div>'
            '<div class="s24m-bot"><span><b>●</b> Toate camerele online</span><span>Înregistrare 24/7 · 21 de zile</span></div></div><!-- /s24-mon -->')
+try:   # filmări reale în locul desenelor (scripts/monitor_video.py, 21.11.2026)
+    import sys; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__))); from monitor_video import MONITOR
+except ImportError: pass
 
 def cam(x, y, k, col):
     return (f'<g class="s24b-cam" data-k="{k}"><circle class="ping" cx="{x}" cy="{y}" r="6" fill="{col}"/>'
