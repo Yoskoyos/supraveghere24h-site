@@ -2554,3 +2554,19 @@ html.s24x-lock { overflow: hidden; }
 .s24x-sub:hover { background: #fff; color: #0D1F33; }
 .s24x-sub[aria-pressed="true"] { background: #fff; color: #0D1F33; box-shadow: 0 1px 4px rgba(13,31,51,.12); outline: 1.5px solid #F5A100; }
 @media screen and (max-width: 767px) { .s24x-subs { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; } .s24x-sub { flex-shrink: 0; } }
+/* s24-hdr-compact */
+@media screen and (min-width: 992px) {
+  .s24-nav-in { padding-top: 8px !important; padding-bottom: 8px !important; }
+  .s24-header.s24-scrolled .s24-nav-in { padding-top: 5px !important; padding-bottom: 5px !important; }
+  .s24-nav-in > .s24-logo-img { width: 196px !important; }
+  .s24-nav-in > .s24-links .s24-link { padding-top: 7px !important; padding-bottom: 7px !important; }
+  .s24-nav-in > .s24-btn { padding: 11px 22px !important; font-size: 15px !important; }
+  .s24-navtel svg { width: 18px; height: 18px; padding: 8px; }
+  .s24-navtel b { font-size: 15px; }
+  .s24-navtel small { font-size: 11px; }
+}
+@media screen and (max-width: 991px) {
+  .s24-nav-in { padding-top: 8px !important; padding-bottom: 8px !important; }
+  .s24-nav-in > .s24-logo-img { width: 150px !important; }
+}
+/* /s24-hdr-compact */
