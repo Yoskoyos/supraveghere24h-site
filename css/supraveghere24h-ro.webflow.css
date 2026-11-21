@@ -2300,3 +2300,19 @@ a.s24-ti:hover { color: #fff; }
   .s24-header.s24-scrolled .s24-nav-in { padding-top: 10px; padding-bottom: 10px; }
 }
 @media (prefers-reduced-motion: reduce) { .s24-live::after { animation: none; } .s24-dd-m, .s24-chev, .s24-nav-in, .s24-navtel svg { transition: none !important; } }
+/* s24-hdr-compact */
+@media screen and (min-width: 992px) {
+  .s24-nav-in { padding-top: 8px !important; padding-bottom: 8px !important; }
+  .s24-header.s24-scrolled .s24-nav-in { padding-top: 5px !important; padding-bottom: 5px !important; }
+  .s24-nav-in > .s24-logo-img { width: 196px !important; }
+  .s24-nav-in > .s24-links .s24-link { padding-top: 7px !important; padding-bottom: 7px !important; }
+  .s24-nav-in > .s24-btn { padding: 11px 22px !important; font-size: 15px !important; }
+  .s24-navtel svg { width: 18px; height: 18px; padding: 8px; }
+  .s24-navtel b { font-size: 15px; }
+  .s24-navtel small { font-size: 11px; }
+}
+@media screen and (max-width: 991px) {
+  .s24-nav-in { padding-top: 8px !important; padding-bottom: 8px !important; }
+  .s24-nav-in > .s24-logo-img { width: 150px !important; }
+}
+/* /s24-hdr-compact */
