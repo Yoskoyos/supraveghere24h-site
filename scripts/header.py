@@ -32,7 +32,6 @@ def nav(f):
             '            </div></div>\n'
             f'          <a href="/#pasi" class="s24-link">Cum funcționează</a>\n'
             f'          <a href="calculator-pret.html"{cur(f == "calculator-pret.html")}>Calculator preț</a>\n'
-            f'          <a href="ghiduri.html"{cur(f == "ghiduri.html" or f.startswith("ghid-"))}>Ghiduri</a>\n'
             f'          <a href="despre-noi.html"{cur(f == "despre-noi.html")}>Despre noi</a>\n'
             f'          <a href="contact.html"{cur(f == "contact.html")}>Contact</a>\n'
             '        </nav>')
