@@ -35,7 +35,7 @@
   function cartSet(c) { try { localStorage.setItem('s24cart', JSON.stringify(c)); } catch (e) {} try { window.dispatchEvent(new Event('s24cart')); } catch (e) {} }
   function cartAdd(id, q) { var c = cartGet(), x = c.filter(function (y) { return y.id === id; })[0]; if (x) x.qty = Math.min(99, x.qty + q); else c.push({ id: id, qty: Math.min(99, q) }); cartSet(c); }
 
-  var ALL = [], BYID = {}, SHOP = { on: false }, box, state = { g: '', s: '', q: '', sort: 'rec' };
+  var ALL = [], BYID = {}, SHOP = { on: false }, box, state = { g: '', s: '', p: '', q: '', sort: 'rec' };
   var priced = function (x) { return SHOP.on && x.price > 0; };
 
   // „Cere ofertă” → formularul de contact de pe pagină, cu produsul trecut în mesaj
@@ -68,6 +68,7 @@
     var L = ALL.filter(function (x) {
       if (state.g === 'off') { if (!hasDisc(x)) return false; } else if (g && g[2].indexOf(x.cat) < 0) return false;
       if (state.s) { if (state.s.indexOf('p:') === 0) { if (x.cat !== state.s.slice(2) && !(state.s === 'p:interior' && x.cat === 'lift')) return false; } else if (x.sub !== state.s) return false; }
+      if (state.p && x.cat !== state.p) return false;
       if (q && (x.name + ' ' + x.brand + ' ' + x.model + ' ' + (x.specs || []).join(' ')).toLowerCase().indexOf(q) < 0) return false;
       return true;
     });
@@ -86,6 +87,37 @@
     sb.hidden = subs.length < 2;
     sb.innerHTML = subs.length < 2 ? '' : '<button type="button" class="s24x-sub" data-s="" aria-pressed="' + (!state.s) + '">Toate</button>' + subs.map(function (o) { return '<button type="button" class="s24x-sub" data-s="' + o[0] + '" aria-pressed="' + (state.s === o[0]) + '">' + o[1] + '</button>'; }).join('');
   }
+  /* meniul „Categorii” (ca la magazinele mari): grupe în stânga, subcategorii pe coloane în dreapta; doar ce există în catalog */
+  var MEGA_IC = { off: '%', cam: '📷', nvr: '🖥', hdd: '💾', net: '🔌', pwr: '⚡', acc: '🧰', mon: '🖵' };
+  function megaCols(g) {   // [[titlu, [[eticheta, g, s, p, n], ...]], ...]
+    var inG = function (x) { return g[2].indexOf(x.cat) >= 0; }, cnt = function (f) { return ALL.filter(function (x) { return inG(x) && f(x); }).length; };
+    if (g[0] === 'cam') {
+      var cols = [];
+      [['exterior', 'Camere exterior'], ['interior', 'Camere interior'], ['lift', 'Camere lift']].forEach(function (pl) {
+        var items = SUBS.cam.filter(function (o) { return o[0].indexOf('p:') !== 0 && o[0] !== 'kit'; }).map(function (o) { return [SUBN[o[0]].replace('Cameră ', '').replace(/^./, function (c) { return c.toUpperCase(); }), 'cam', o[0], pl[0], cnt(function (x) { return x.cat === pl[0] && x.sub === o[0]; })]; }).filter(function (i) { return i[4]; });
+        var tot = cnt(function (x) { return x.cat === pl[0]; }); if (tot) cols.push([pl[1], [['Toate camerele de ' + pl[0], 'cam', '', pl[0], tot]].concat(items)]);
+      });
+      var kits = cnt(function (x) { return x.sub === 'kit'; }); if (kits) cols.push(['Kituri supraveghere', [['Kituri', 'cam', 'kit', '', kits], ['Kituri complete', 'cam', 'kit', '', kits]]]);
+      return cols;
+    }
+    var items = (SUBS[g[0]] || []).map(function (o) { return [o[1], g[0], o[0], '', cnt(function (x) { return x.sub === o[0]; })]; }).filter(function (i) { return i[4]; });
+    return [[g[1], [['Toate (' + cnt(function () { return true; }) + ')', g[0], '', '', -1]].concat(items)]];
+  }
+  function megaHtml(present) {
+    var L = present.map(function (g, i) { var n = g[0] === 'off' ? ALL.filter(hasDisc).length : ALL.filter(function (x) { return g[2].indexOf(x.cat) >= 0; }).length;
+      return '<button type="button" class="s24x-mg-g' + (g[0] === 'off' ? ' red' : '') + (i === (present[0] && present[0][0] === 'off' ? 1 : 0) ? ' on' : '') + '" data-mg="' + g[0] + '"><span>' + (MEGA_IC[g[0]] || '•') + '</span>' + esc(g[1]) + '<em>' + n + '</em><b>›</b></button>'; }).join('');
+    var R = present.filter(function (g) { return g[0] !== 'off'; }).map(function (g, i) {
+      return '<div class="s24x-mg-p" data-mgp="' + g[0] + '"' + (i ? ' hidden' : '') + '><div class="s24x-mg-h">' + esc(g[1]) + '</div><div class="s24x-mg-cols">' + megaCols(g).map(function (c) {
+        return '<div class="s24x-mg-c"><a href="#" class="s24x-mg-t" data-go="' + c[1][0].slice(1, 4).join('|') + '">' + esc(c[0]) + '</a>' + c[1].slice(1).map(function (it) {
+          return '<a href="#" data-go="' + [it[1], it[2], it[3]].join('|') + '">' + esc(it[0]) + (it[4] > 0 ? ' <small>' + it[4] + '</small>' : '') + '</a>'; }).join('') + '</div>'; }).join('') + '</div></div>'; }).join('');
+    return '<div class="s24x-mg-l">' + L + '</div><div class="s24x-mg-r">' + R + '</div>';
+  }
+  function megaShow(k) {
+    [].forEach.call(box.querySelectorAll('[data-mg]'), function (b) { b.classList.toggle('on', b.getAttribute('data-mg') === k); });
+    [].forEach.call(box.querySelectorAll('[data-mgp]'), function (p) { p.hidden = p.getAttribute('data-mgp') !== k; });
+  }
+  function syncChips() { [].forEach.call(box.querySelectorAll('.s24x-chip[data-g]'), function (c) { c.setAttribute('aria-pressed', c.getAttribute('data-g') === state.g ? 'true' : 'false'); }); }
+  function megaOpen(on) { var m = box.querySelector('.s24x-mega'), b = box.querySelector('.s24x-catbtn'); if (!m) return; m.hidden = !on; b.setAttribute('aria-expanded', on ? 'true' : 'false'); }
   function build(title) {
     var present = GROUPS.filter(function (g) { return ALL.some(function (x) { return g[2].indexOf(x.cat) >= 0; }); });
     var nDisc = ALL.filter(hasDisc).length;
@@ -99,20 +131,31 @@
         '<li>' + I.doc + '<span><b>Factură fiscală</b>pe firmă sau persoană fizică</span></li>' +
         '<li>' + I.truck + '<span><b>Livrare prin curier</b>' + (SHOP.freeOver ? 'gratuită peste ' + lei(SHOP.freeOver) + ' lei' : 'sau ridicare din București') + '</span></li>' +
         '<li>' + I.back + '<span><b>Retur în 14 zile</b>pentru persoane fizice</span></li></ul>' : '') +
-      '<div class="s24x-tools">' + chips + '<div class="s24x-tr"><label class="s24x-search">' + I.search + '<input type="search" placeholder="Caută model, rezoluție…" aria-label="Caută în echipamente" autocomplete="off"></label>' +
+      '<div class="s24x-tools"><div class="s24x-r1"><button type="button" class="s24x-catbtn" aria-expanded="false" aria-haspopup="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>Categorii</button>' + chips + '</div><div class="s24x-tr"><label class="s24x-search">' + I.search + '<input type="search" placeholder="Caută model, rezoluție…" aria-label="Caută în echipamente" autocomplete="off"></label>' +
       '<select class="s24x-sort" aria-label="Ordonează">' + '<option value="rec">Recomandate</option>' + (SHOP.on ? '<option value="pa">Preț crescător</option><option value="pd">Preț descrescător</option>' : '') + '<option value="nm">Nume (A–Z)</option></select></div></div>' +
+      '<div class="s24x-mega" hidden>' + megaHtml(present) + '</div>' +
       '<div class="s24x-subs" role="group" aria-label="Filtrează după tip" hidden></div><div class="s24x-grid"></div>' +
       (SHOP.on ? '<p class="s24x-legal">Prețuri finale în lei. YCA SOLUTIONS S.R.L. nu este plătitoare de TVA. Prețul tăiat este cel mai mic preț practicat pe site în cele 30 de zile dinaintea reducerii. Pentru blocuri, aceleași echipamente sunt incluse în <a href="oferta-asociatii.html">abonamentul lunar</a>, cu montaj și mentenanță.</p>'
         : '<p class="s24x-legal">Pentru blocuri, echipamentele sunt incluse în <a href="oferta-asociatii.html">abonamentul lunar</a>, fără investiție inițială. Pentru firme și case facem ofertă personalizată.</p>');
     box.addEventListener('click', function (e) {
-      var c = e.target.closest('.s24x-chip'); if (c) { state.g = c.getAttribute('data-g'); state.s = ''; renderGrid(); return; }
-      var sbt = e.target.closest('.s24x-sub'); if (sbt) { state.s = sbt.getAttribute('data-s'); renderGrid(); return; }
-      if (e.target.closest('[data-reset]')) { state = { g: '', s: '', q: '', sort: state.sort }; box.querySelector('.s24x-search input').value = ''; renderGrid(); return; }
+      if (e.target.closest('.s24x-catbtn')) { megaOpen(box.querySelector('.s24x-mega').hidden); return; }
+      var mg = e.target.closest('[data-mg]');
+      if (mg) { var k = mg.getAttribute('data-mg');
+        if (k === 'off' || window.matchMedia('(hover: none)').matches === false && e.detail) { state.g = k; state.s = ''; state.p = ''; megaOpen(false); renderGrid(); syncChips(); return; }
+        megaShow(k); return; }
+      var go = e.target.closest('[data-go]');
+      if (go) { e.preventDefault(); var v = go.getAttribute('data-go').split('|'); state.g = v[0]; state.s = v[1] || ''; state.p = v[2] || ''; megaOpen(false); renderGrid(); syncChips(); var t = box.querySelector('.s24x-grid'); if (t && t.getBoundingClientRect().top < 0) box.scrollIntoView({ behavior: 'smooth' }); return; }
+      var c = e.target.closest('.s24x-chip'); if (c) { state.g = c.getAttribute('data-g'); state.s = ''; state.p = ''; renderGrid(); return; }
+      var sbt = e.target.closest('.s24x-sub'); if (sbt) { state.s = sbt.getAttribute('data-s'); state.p = ''; renderGrid(); return; }
+      if (e.target.closest('[data-reset]')) { state = { g: '', s: '', p: '', q: '', sort: state.sort }; box.querySelector('.s24x-search input').value = ''; renderGrid(); return; }
       var art = e.target.closest('.s24x-card'); if (!art) return; var x = BYID[art.getAttribute('data-id')];
       if (e.target.closest('[data-add]')) { cartAdd(x.id, 1); openCart(x); return; }
       if (e.target.closest('[data-open]')) openProduct(x);
     });
     box.querySelector('.s24x-search input').addEventListener('input', function (e) { state.q = e.target.value; renderGrid(); });
+    box.addEventListener('mouseover', function (e) { var mg = e.target.closest('[data-mg]'); if (mg && mg.getAttribute('data-mg') !== 'off') megaShow(mg.getAttribute('data-mg')); });
+    document.addEventListener('click', function (e) { if (!e.target.closest('.s24x-mega') && !e.target.closest('.s24x-catbtn')) megaOpen(false); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') megaOpen(false); });
     box.querySelector('.s24x-sort').addEventListener('change', function (e) { state.sort = e.target.value; renderGrid(); });
     renderGrid();
   }
