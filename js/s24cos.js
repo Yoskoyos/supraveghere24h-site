@@ -8,8 +8,9 @@
   function lei(n) { return (Math.round(n * 100) / 100).toLocaleString('ro-RO', { minimumFractionDigits: n % 1 ? 2 : 0, maximumFractionDigits: 2 }) + ' lei'; }
   function cartGet() { try { var c = JSON.parse(localStorage.getItem('s24cart') || '[]'); return Array.isArray(c) ? c.filter(function (x) { return x && x.id && x.qty > 0; }) : []; } catch (e) { return []; } }
   function cartSet(c) { try { localStorage.setItem('s24cart', JSON.stringify(c)); } catch (e) {} try { window.dispatchEvent(new Event('s24cart')); } catch (e) {} }
-  var root, BY = {}, SHOP = null, lines = [], form = { type: 'pf', delivery: 'curier', pay: '' }, sending = false;
+  var root, BY = {}, SHOP = null, lines = [], form = { type: 'pf', delivery: 'curier', pay: '' }, sending = false;   // doar livrare prin curier (ridicarea personală scoasă 23.11.2026)
   try { var saved = JSON.parse(sessionStorage.getItem('s24cos') || 'null'); if (saved) form = saved; } catch (e) {}
+  form.delivery = 'curier';
 
   function totals() {
     var sub = lines.reduce(function (t, l) { return t + l.x.price * l.qty; }, 0);
@@ -21,7 +22,6 @@
     var o = [];
     if (form.delivery === 'curier' && SHOP.cod) o.push(['ramburs', 'Ramburs, la curier', 'Plătești când primești coletul' + (SHOP.codFee ? ' · taxă ' + lei(SHOP.codFee) : '')]);
     if (SHOP.op) o.push(['op', 'Transfer bancar', 'Primești pe e-mail datele de plată; expediem după ce primim banii']);
-    if (form.delivery === 'ridicare') o.push(['ridicare', 'La ridicare', 'Plătești când ridici produsele']);
     return o;
   }
   function sync() { lines = cartGet().map(function (c) { return { x: BY[c.id], qty: c.qty }; }).filter(function (l) { return l.x && l.x.price > 0; }); }
@@ -52,7 +52,7 @@
       (form.type === 'pj' ? '<div class="s24c-row">' + f('company', 'Denumirea firmei / asociației', 'text', 1, ' autocomplete="organization" maxlength="160"') + f('cui', 'CUI / CIF', 'text', 1, ' maxlength="30"') + '</div>' + f('regcom', 'Nr. Reg. Comerțului', 'text', 0, ' maxlength="40"') : '') +
       '<h2 class="s24c-h s24c-h2">Livrare</h2><div class="s24c-opts">' +
       radio('delivery', 'curier', 'Livrare prin curier', 'La adresa ta, în 1–3 zile lucrătoare după expediere', form.delivery === 'curier', t.ship || form.delivery !== 'curier' ? (SHOP.freeOver && t.sub >= SHOP.freeOver ? 'gratuit' : lei(SHOP.ship)) : 'gratuit') +
-      (SHOP.pickup ? radio('delivery', 'ridicare', 'Ridicare personală', 'Din sediul nostru din București (Sector 1), după ce te sunăm', form.delivery === 'ridicare', 'gratuit') : '') + '</div>' +
+      '</div>' +
       (form.delivery === 'curier' ? '<div class="s24c-row">' + '<div class="s24c-f"><label for="c-county">Județ</label><select id="c-county" name="county" required autocomplete="address-level1"><option value="">Alege județul</option>' + JUD.map(function (j) { return '<option' + (form.county === j ? ' selected' : '') + '>' + j + '</option>'; }).join('') + '</select></div>' + f('city', 'Localitate / sector', 'text', 1, ' autocomplete="address-level2" maxlength="80"') + '</div>' +
         '<div class="s24c-row s24c-row-a">' + f('address', 'Strada, număr, bloc, scară, apartament', 'text', 1, ' autocomplete="street-address" maxlength="300"') + f('zip', 'Cod poștal', 'text', 0, ' autocomplete="postal-code" inputmode="numeric" maxlength="12"', 's24c-zip') + '</div>' : '') +
       '<h2 class="s24c-h s24c-h2">Plata</h2><div class="s24c-opts">' + po.map(function (p) { return radio('pay', p[0], p[1], p[2], form.pay === p[0]); }).join('') + '</div>' +

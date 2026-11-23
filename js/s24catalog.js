@@ -129,7 +129,7 @@
       (SHOP.on ? '<ul class="s24x-trust" role="list">' +
         '<li>' + I.shield + '<span><b>Produse originale</b>garanție 2 ani</span></li>' +
         '<li>' + I.doc + '<span><b>Factură fiscală</b>pe firmă sau persoană fizică</span></li>' +
-        '<li>' + I.truck + '<span><b>Livrare prin curier</b>' + (SHOP.freeOver ? 'gratuită peste ' + lei(SHOP.freeOver) + ' lei' : 'sau ridicare din București') + '</span></li>' +
+        '<li>' + I.truck + '<span><b>Livrare prin curier</b>' + (SHOP.freeOver ? 'gratuită peste ' + lei(SHOP.freeOver) + ' lei' : 'în 1–3 zile lucrătoare') + '</span></li>' +
         '<li>' + I.back + '<span><b>Retur în 14 zile</b>pentru persoane fizice</span></li></ul>' : '') +
       '<div class="s24x-tools"><div class="s24x-r1"><button type="button" class="s24x-catbtn" aria-expanded="false" aria-haspopup="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>Categorii</button>' + chips + '</div><div class="s24x-tr"><label class="s24x-search">' + I.search + '<input type="search" placeholder="Caută model, rezoluție…" aria-label="Caută în echipamente" autocomplete="off"></label>' +
       '<select class="s24x-sort" aria-label="Ordonează">' + '<option value="rec">Recomandate</option>' + (SHOP.on ? '<option value="pa">Preț crescător</option><option value="pd">Preț descrescător</option>' : '') + '<option value="nm">Nume (A–Z)</option></select></div></div>' +
@@ -200,7 +200,7 @@
         : '<div class="s24x-pm-buy"><div><div class="s24x-ask">Preț la cerere</div></div><a href="' + (document.getElementById('contact') ? '#contact' : 'contact.html') + '" class="s24x-add s24x-add-l" data-ofr="' + esc([x.brand, x.model || x.name].filter(Boolean).join(' ')) + '">Cere ofertă</a></div>') +
       ((x.specs || []).length ? '<h3 class="s24x-pm-h3">Caracteristici</h3><ul class="s24x-spec s24x-spec-l">' + x.specs.map(function (s) { return '<li>' + esc(s) + '</li>'; }).join('') + '</ul>' : '') +
       (x.datasheet ? '<a class="s24x-pdf" href="' + esc(x.datasheet) + '" target="_blank" rel="noopener">' + I.pdf + 'Fișa tehnică (PDF)</a>' : '') +
-      '<ul class="s24x-pm-notes" role="list">' + (priced(x) ? '<li>' + I.shield + 'Garanție 2 ani · factură fiscală</li><li>' + I.truck + 'Livrare prin curier' + (SHOP.pickup ? ' sau ridicare din București' : '') + '</li>' : '<li>' + I.shield + 'Inclus în abonamentul pentru blocuri, cu garanție pe toată durata contractului</li>') +
+      '<ul class="s24x-pm-notes" role="list">' + (priced(x) ? '<li>' + I.shield + 'Garanție 2 ani · factură fiscală</li><li>' + I.truck + 'Livrare prin curier în 1–3 zile lucrătoare</li>' : '<li>' + I.shield + 'Inclus în abonamentul pentru blocuri, cu garanție pe toată durata contractului</li>') +
       '<li>' + I.tool + 'Vrei și montaj? <a href="' + (document.getElementById('contact') ? '#contact' : 'contact.html') + '" data-ofr="' + esc('montaj pentru ' + [x.brand, x.model || x.name].filter(Boolean).join(' ')) + '">Cere ofertă cu montaj</a></li></ul></div>';
     show(pm);
   }
