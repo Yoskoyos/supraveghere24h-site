@@ -20,6 +20,7 @@
   }
   function payOpts() {
     var o = [];
+    if (SHOP.card) o.push(['card', 'Card online', 'Plătești acum, securizat, prin NETOPIA Payments (Visa, Mastercard)']);
     if (form.delivery === 'curier' && SHOP.cod) o.push(['ramburs', 'Ramburs, la curier', 'Plătești când primești coletul' + (SHOP.codFee ? ' · taxă ' + lei(SHOP.codFee) : '')]);
     if (SHOP.op) o.push(['op', 'Transfer bancar', 'Primești pe e-mail datele de plată; expediem după ce primim banii']);
     return o;
@@ -106,6 +107,7 @@
     fetch(API + '/public/order', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) }).then(function (r) { return r.json().catch(function () { return { error: 'Răspuns neașteptat de la server' }; }).then(function (d) { return { st: r.status, d: d }; }); })
       .then(function (r) {
         sending = false;
+        if (r.st === 200 && r.d.ok && r.d.payUrl) { cartSet([]); try { sessionStorage.removeItem('s24cos'); } catch (e) {} btn.textContent = 'Te ducem la plata cu cardul…'; location.href = r.d.payUrl; return; }
         if (r.st === 200 && r.d.ok) return done(r.d);
         if (r.st === 409) { return load(function () { err(r.d.error || 'Coșul s-a schimbat. Verifică-l din nou.'); }); }
         btn.disabled = false; btn.textContent = 'Trimite comanda'; err(r.d.error || 'Comanda nu a putut fi trimisă. Încearcă din nou sau sună-ne la 0763 354 355.');
