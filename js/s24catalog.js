@@ -100,8 +100,8 @@
     }).join('');
   }
   function sideInit(present) {
-    var side = document.querySelector('.s24-side'), cats = (box.getAttribute('data-cats') || '').trim();
-    if (!side || cats || present.length < 2) return;
+    var side = document.querySelector('.s24-side');
+    if (!side || present.length < 2) return;
     SIDE = side; PRESENT = present; SIDE.classList.add('s24x-side'); box.classList.add('s24x-hasside'); SIDE.setAttribute('aria-label', 'Categorii');
     SIDE.addEventListener('click', function (e) {
       var g = e.target.closest('[data-sg]'), ss = e.target.closest('[data-ss]');
@@ -258,7 +258,11 @@
     var empty = '<p style="margin:18px 0 0;color:#3D4F63">Lista echipamentelor se actualizează. Pentru detalii despre modelele pe care le montăm, sună-ne la <a href="tel:+40763354355" style="color:#0D1F33;font-weight:700">0763 354 355</a>.</p>';
     if (!window.fetch) { slot.innerHTML = empty; return; }
     fetch(API, { cache: 'no-cache' }).then(function (r) { return r.ok ? r.json() : null; }).then(function (d) {
-      ALL = (d && d.items || []).filter(function (x) { return !cats.length || cats.indexOf(x.cat) >= 0; });
+      // toate paginile de echipamente arată tot catalogul; pagina de categorie doar preselectează filtrul ei
+      ALL = (d && d.items || []).slice();
+      var ck = cats.slice().sort().join(','), pre = { 'exterior': ['cam', 'p:exterior'], 'interior,lift': ['cam', 'p:interior'], 'exterior,interior,lift': ['cam', ''], 'nvr': ['nvr', ''], 'hdd': ['hdd', ''], 'alimentare,altele,monitor,rack,retea': ['acc', ''] }[ck];
+      if (!pre && /kit-uri/.test(location.pathname)) pre = ['cam', 'kit'];
+      if (pre) { state.g = pre[0]; state.s = pre[1]; }
       if (!ALL.length) { slot.innerHTML = empty; return; }
       SHOP = d.shop && d.shop.on ? d.shop : { on: false }; ALL.forEach(function (x) { BYID[x.id] = x; });
       (d.items || []).forEach(function (x) { BYID[x.id] = x; });
