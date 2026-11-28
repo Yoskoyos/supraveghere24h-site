@@ -2610,3 +2610,12 @@ html.s24x-lock { overflow: hidden; }
 .s24x-side-ss button:hover { background: #F3F5F8; color: #0D1F33; }
 .s24x-side-ss button[aria-pressed="true"] { color: #0D1F33; font-weight: 700; background: #FFF9EA; }
 @media screen and (min-width: 768px) { .s24x-hasside .s24x-chips, .s24x-hasside .s24x-catbtn, .s24x-hasside .s24x-subs { display: none !important; } .s24x-hasside .s24x-r1 { display: none; } }
+
+/* subsol: sigla NETOPIA Payments + pictograma ANPC SAL */
+.s24-foot-pay { display: flex; align-items: center; gap: 14px 22px; flex-wrap: wrap; border-top: 1px solid rgba(255,255,255,.08); padding-top: 18px; padding-bottom: 24px; }
+.s24-pay-t { color: #8FA0B3; font-size: 13px; font-weight: 600; }
+.s24-pay-np { width: 200px; height: 40px; }
+.s24-pay-np img { display: block; }
+.s24-pay-sal { display: block; line-height: 0; }
+.s24-pay-sal img { display: block; height: 40px; width: auto; border-radius: 4px; }
+@media screen and (max-width: 767px) { .s24-foot-pay { justify-content: center; text-align: center; padding-bottom: 96px; } .s24-pay-t { width: 100%; } }
