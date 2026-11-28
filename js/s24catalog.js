@@ -86,6 +86,31 @@
     var subs = grp && SUBS[state.g] ? SUBS[state.g].filter(function (o) { return ALL.some(function (x) { return grp[2].indexOf(x.cat) >= 0 && (o[0].indexOf('p:') === 0 ? x.cat === o[0].slice(2) || (o[0] === 'p:interior' && x.cat === 'lift') : x.sub === o[0]); }); }) : [];
     sb.hidden = subs.length < 2;
     sb.innerHTML = subs.length < 2 ? '' : '<button type="button" class="s24x-sub" data-s="" aria-pressed="' + (!state.s) + '">Toate</button>' + subs.map(function (o) { return '<button type="button" class="s24x-sub" data-s="' + o[0] + '" aria-pressed="' + (state.s === o[0]) + '">' + o[1] + '</button>'; }).join('');
+    renderSide(subs);
+  }
+  /* meniul din stânga (pe pagina cu toate echipamentele): aceleași categorii ca butoanele de sus, cu tipurile categoriei alese dedesubt */
+  var SIDE = null, PRESENT = [];
+  function renderSide(subs) {
+    if (!SIDE) return;
+    var it = function (g, label, n) { return '<button type="button" class="s24-side-sub s24x-sg' + (state.g === g ? ' w--current' : '') + (g === 'off' ? ' red' : '') + '" data-sg="' + g + '" aria-pressed="' + (state.g === g) + '"><span>' + esc(label) + '</span><small>' + n + '</small></button>'; };
+    var cur = PRESENT.filter(function (g) { return g[0] === state.g; })[0], h = box.querySelector('.s24x-head .s24-block-h'); if (h) h.textContent = cur ? cur[1] : 'Toate echipamentele';
+    SIDE.innerHTML = '<div class="s24-side-h">Categorii</div>' + it('', 'Toate produsele', ALL.length) + PRESENT.map(function (g) {
+      var n = g[0] === 'off' ? ALL.filter(hasDisc).length : ALL.filter(function (x) { return g[2].indexOf(x.cat) >= 0; }).length;
+      return it(g[0], g[1], n) + (state.g === g[0] && subs.length > 1 ? '<div class="s24x-side-ss">' + [['', 'Toate']].concat(subs).map(function (o) { return '<button type="button" data-ss="' + o[0] + '" aria-pressed="' + (state.s === o[0]) + '">' + esc(o[1]) + '</button>'; }).join('') + '</div>' : '');
+    }).join('');
+  }
+  function sideInit(present) {
+    var side = document.querySelector('.s24-side'), cats = (box.getAttribute('data-cats') || '').trim();
+    if (!side || cats || present.length < 2) return;
+    SIDE = side; PRESENT = present; SIDE.classList.add('s24x-side'); box.classList.add('s24x-hasside'); SIDE.setAttribute('aria-label', 'Categorii');
+    SIDE.addEventListener('click', function (e) {
+      var g = e.target.closest('[data-sg]'), ss = e.target.closest('[data-ss]');
+      if (g) { state.g = g.getAttribute('data-sg'); state.s = ''; state.p = ''; }
+      else if (ss) { state.s = ss.getAttribute('data-ss'); state.p = ''; }
+      else return;
+      renderGrid(); syncChips();
+      var t = box.querySelector('.s24x-tools'); if (t && t.getBoundingClientRect().top < 0) t.scrollIntoView({ behavior: 'smooth' });
+    });
   }
   /* meniul „Categorii” (ca la magazinele mari): grupe în stânga, subcategorii pe coloane în dreapta; doar ce există în catalog */
   var MEGA_IC = { off: '%', cam: '📷', nvr: '🖥', hdd: '💾', net: '🔌', pwr: '⚡', acc: '🧰', mon: '🖵' };
@@ -157,6 +182,7 @@
     document.addEventListener('click', function (e) { if (!e.target.closest('.s24x-mega') && !e.target.closest('.s24x-catbtn')) megaOpen(false); });
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape') megaOpen(false); });
     box.querySelector('.s24x-sort').addEventListener('change', function (e) { state.sort = e.target.value; renderGrid(); });
+    sideInit(present);
     renderGrid();
   }
 

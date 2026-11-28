@@ -2597,3 +2597,16 @@ html.s24x-lock { overflow: hidden; }
   .s24x-mg-r{padding:14px 16px}.s24x-mg-cols{grid-template-columns:1fr 1fr;gap:14px}
 }
 /* /s24-mega */
+
+/* meniul de categorii din stânga (pagina Echipamente) */
+.s24x-side button { border: 0; background: none; font: inherit; text-align: left; width: 100%; cursor: pointer; box-sizing: border-box; }
+.s24x-side .s24x-sg { line-height: 1.3; min-height: 38px; padding-top: 8px; padding-bottom: 8px; display: flex; align-items: center; justify-content: space-between; gap: 8px; padding-right: 10px; margin-bottom: 2px; }
+.s24x-side .s24x-sg small { font-size: 12px; font-weight: 600; color: #8A96A3; }
+.s24x-side .s24x-sg.w--current small { color: #9A6A00; }
+.s24x-side .s24x-sg.red span { color: #C62828; font-weight: 700; }
+.s24x-side .s24x-sg:focus-visible, .s24x-side-ss button:focus-visible { outline: 3px solid #F5A100; outline-offset: 1px; }
+.s24x-side-ss { margin: 2px 0 8px 12px; padding-left: 10px; border-left: 2px solid #F5E2B0; display: flex; flex-direction: column; gap: 1px; }
+.s24x-side-ss button { color: #52606F; font-size: 14px; padding: 6px 10px; border-radius: 7px; line-height: 1.25; }
+.s24x-side-ss button:hover { background: #F3F5F8; color: #0D1F33; }
+.s24x-side-ss button[aria-pressed="true"] { color: #0D1F33; font-weight: 700; background: #FFF9EA; }
+@media screen and (min-width: 768px) { .s24x-hasside .s24x-chips, .s24x-hasside .s24x-catbtn, .s24x-hasside .s24x-subs { display: none !important; } .s24x-hasside .s24x-r1 { display: none; } }
