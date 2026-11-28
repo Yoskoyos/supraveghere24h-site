@@ -59,7 +59,7 @@
       '<div class="s24x-foot">' + (priced(x)
         ? '<div class="s24x-pr">' + (hasDisc(x) ? '<s class="s24x-old">' + lei(x.oldPrice) + ' lei</s>' : '') + '<div class="s24x-price' + (hasDisc(x) ? ' s24x-red' : '') + '">' + lei(x.price) + '<small> lei</small></div>' + (av ? '<span class="s24x-av ' + av[1] + '">' + av[0] + '</span>' : '') + '</div>' +
           '<button type="button" class="s24x-add" data-add aria-label="Adaugă în coș: ' + esc(x.name) + '">' + I.cart + '<span>Adaugă</span></button>'
-        : '<div class="s24x-pr"><div class="s24x-ask">Preț la cerere</div><span class="s24x-av ord">Inclus și în abonament</span></div>' +
+        : '<div class="s24x-pr"><div class="s24x-ask">Preț la cerere</div></div>' +
           '<a href="' + (document.getElementById('contact') ? '#contact' : 'contact.html') + '" class="s24x-add s24x-add-o" data-ofr="' + esc([x.brand, x.model || x.name].filter(Boolean).join(' ')) + '">Cere ofertă</a>') +
       '</div></div></article>';
   }
@@ -226,7 +226,7 @@
         : '<div class="s24x-pm-buy"><div><div class="s24x-ask">Preț la cerere</div></div><a href="' + (document.getElementById('contact') ? '#contact' : 'contact.html') + '" class="s24x-add s24x-add-l" data-ofr="' + esc([x.brand, x.model || x.name].filter(Boolean).join(' ')) + '">Cere ofertă</a></div>') +
       ((x.specs || []).length ? '<h3 class="s24x-pm-h3">Caracteristici</h3><ul class="s24x-spec s24x-spec-l">' + x.specs.map(function (s) { return '<li>' + esc(s) + '</li>'; }).join('') + '</ul>' : '') +
       (x.datasheet ? '<a class="s24x-pdf" href="' + esc(x.datasheet) + '" target="_blank" rel="noopener">' + I.pdf + 'Fișa tehnică (PDF)</a>' : '') +
-      '<ul class="s24x-pm-notes" role="list">' + (priced(x) ? '<li>' + I.shield + 'Garanție 2 ani · factură fiscală</li><li>' + I.truck + 'Livrare prin curier în 1–3 zile lucrătoare</li>' : '<li>' + I.shield + 'Inclus în abonamentul pentru blocuri, cu garanție pe toată durata contractului</li>') +
+      '<ul class="s24x-pm-notes" role="list">' + (priced(x) ? '<li>' + I.shield + 'Garanție 2 ani · factură fiscală</li><li>' + I.truck + 'Livrare prin curier în 1–3 zile lucrătoare</li>' : '') +
       '<li>' + I.tool + 'Vrei și montaj? <a href="' + (document.getElementById('contact') ? '#contact' : 'contact.html') + '" data-ofr="' + esc('montaj pentru ' + [x.brand, x.model || x.name].filter(Boolean).join(' ')) + '">Cere ofertă cu montaj</a></li></ul></div>';
     show(pm);
   }
