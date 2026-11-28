@@ -2324,8 +2324,8 @@ a.s24-ti:hover { color: #fff; }
 .s24x-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(232px, 1fr)); gap: 16px; }
 .s24x-card { position: relative; display: flex; flex-direction: column; background: #fff; border: 1px solid #E1E6EC; border-radius: 16px; overflow: hidden; transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease; }
 .s24x-card:hover { transform: translateY(-3px); box-shadow: 0 16px 36px rgba(13,31,51,.12); border-color: #D2DAE3; }
-.s24x-media { position: relative; display: block; width: 100%; padding: 0; border: 0; border-bottom: 1px solid #EEF1F5; background: #fff; cursor: zoom-in; aspect-ratio: 4 / 3; }
-.s24x-media img { width: 100%; height: 100%; object-fit: contain; padding: 18px; box-sizing: border-box; transition: transform .35s ease; }
+.s24x-media { position: relative; display: block; width: 100%; padding: 0; border: 0; border-bottom: 1px solid #EEF1F5; background: #fff; cursor: zoom-in; aspect-ratio: 4 / 3; min-height: 0; overflow: hidden; }
+.s24x-media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; padding: 18px; box-sizing: border-box; transition: transform .35s ease; }
 .s24x-card:hover .s24x-media img { transform: scale(1.05); }
 .s24x-brand { position: absolute; top: 10px; left: 10px; background: #F3F5F8; color: #33475B; font: 700 11px/1 Manrope, Segoe UI, Arial, sans-serif; letter-spacing: .06em; text-transform: uppercase; padding: 6px 9px; border-radius: 999px; }
 .s24x-body { display: flex; flex-direction: column; flex: 1; padding: 14px 16px 16px; }
@@ -2338,12 +2338,12 @@ a.s24-ti:hover { color: #fff; }
 .s24x-spec { list-style: none; margin: 0 0 14px; padding: 0; display: flex; flex-direction: column; gap: 5px; }
 .s24x-spec li { position: relative; padding-left: 16px; color: #3D4F63; font-size: 13.5px; line-height: 1.4; }
 .s24x-spec li::before { content: ""; position: absolute; left: 2px; top: 7px; width: 6px; height: 6px; border-radius: 50%; background: #F5A100; }
-.s24x-foot { margin-top: auto; display: flex; align-items: flex-end; justify-content: space-between; gap: 10px; padding-top: 12px; border-top: 1px dashed #E1E6EC; }
+.s24x-foot { margin-top: auto; display: flex; align-items: flex-end; justify-content: space-between; gap: 10px; padding-top: 12px; border-top: 1px dashed #E1E6EC; flex-wrap: wrap; }
 .s24x-price { font: 800 22px/1.1 Manrope, Segoe UI, Arial, sans-serif; color: #0D1F33; letter-spacing: -.3px; white-space: nowrap; }
 .s24x-price small { font-size: 14px; font-weight: 700; color: #52606F; }
 .s24x-price-l { font-size: 32px; }
 .s24x-ask { font: 700 16px/1.2 Manrope, Segoe UI, Arial, sans-serif; color: #0D1F33; }
-.s24x-av { display: inline-flex; align-items: center; gap: 6px; margin-top: 5px; font-size: 12.5px; font-weight: 600; color: #6B7785; white-space: nowrap; }
+.s24x-av { display: inline-flex; align-items: center; gap: 6px; margin-top: 5px; font-size: 12.5px; font-weight: 600; color: #6B7785; }
 .s24x-av::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
 .s24x-av.ok { color: #15803D; } .s24x-av.soon { color: #1B7AB3; }
 .s24x-add { display: inline-flex; align-items: center; justify-content: center; gap: 8px; border: 0; border-radius: 12px; background: #F5A100; color: #0D1F33; font: 800 14.5px/1 Manrope, Segoe UI, Arial, sans-serif; padding: 0 16px; min-height: 44px; cursor: pointer; text-decoration: none; white-space: nowrap; transition: background-color .15s ease, transform .15s ease; }
@@ -2440,7 +2440,7 @@ html.s24x-lock { overflow: hidden; }
   .s24x-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
   .s24x-body { padding: 10px 11px 12px; }
   .s24x-name { font-size: 14.5px; } .s24x-spec { display: none; } .s24x-sku { font-size: 11.5px; margin-bottom: 4px; }
-  .s24x-foot { flex-direction: column; align-items: stretch; gap: 8px; }
+  .s24x-foot { flex-direction: column; align-items: stretch; gap: 8px; flex-wrap: nowrap; }
   .s24x-price { font-size: 19px; }
   .s24x-add { min-height: 42px; }
   .s24x-ov { padding: 0; align-items: flex-end; }
